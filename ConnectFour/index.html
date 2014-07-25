@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Connect Four Site</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src=myscript.js></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div onclick="changeText()">
+		<h1 id="title">Connect Four Game!</h1>
+	</div>
+	<div id="start">
+		<br>
+		<button type="button" onclick="startConnectFour()">Start New Game!</button>
+		<br><br>
+		AI Difficulty (1 to 9): <br>
+		<input type="text" id="AI_Difficulty">
+		<button type="button" onclick="changeDifficulty()">Change Difficulty</button>
+		<p id="difficulty">Difficulty is 5</p>
+	<div>
+	</div>
+	<div id="board_space">
+		<p>This is my JavaScript/HTML/CSS implementation of Connect Four. It me took a lot of effort to create this recursive AI that looks at thousands of combinations of moves in order to beat you every time. </p>
+		<p>Click "Start New Game!" above, and feel free to change the difficulty at any time. Be aware, though, that the processing time increases exponentially as you increase the difficulty number. </p>
+		<p>Here is <a href=static/ChartImg.png> a link </a> to a dependency chart that I made to help myself understand the code.</p>
+	</div>
+	<div id="input_area">
+		<p id="message">Let's Play!<p>
+	</div>
+</body>

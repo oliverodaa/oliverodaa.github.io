@@ -1,0 +1,50 @@
+body {
+	background:white;
+	font-family:Lato,'Helvetica Neue',Helvetica;
+	color:black;
+	text-align:center;
+}
+
+#start {
+	width:400px;
+	background:#99CCFF;
+	margin:auto;
+	padding:15px;
+}
+
+#input_area {
+	width:400px;
+	height:130px;
+}
+
+#message {
+	padding-top:55px;
+}
+
+#board_space {
+	width:400px;
+	margin:auto;
+	text-align:left;
+}
+
+#connectBoard {
+	text-align:center;
+	background:blue;
+	width:400px;
+	height:400px;
+	margin-top:0px;
+}
+	td {
+		border-radius:50%;
+	}
+		.empty {
+			background:gray;
+		}
+
+		.x {
+			background:yellow;
+		}
+
+		.o {
+			background:red;
+		}

@@ -1,0 +1,69 @@
+body {
+	color: black;
+	font-family: Lato,'Helvetica Neue',serif;
+	font-weight:400;
+	font-size: 1em;
+	line-height: 1.5em;
+	background: gray;
+}
+
+#cover {
+	position:fixed;
+	top:0px;
+	left:50%;
+	height:5000px;
+	z-index:-10;
+	width:2000px;
+}
+
+#cover_background {
+	position:absolute;
+	top:0px;
+	left:-50%;
+	width:100%;
+}
+
+#cover_title {
+	color:white;
+	position:static;
+	display: block;
+	text-align: center;
+	padding-top:175px;
+	line-height: 1em;
+	font-weight:300;
+}
+
+#cover_title h1 {
+	font-size:75px;
+	font-weight:300;
+}
+
+#content_box {
+	position:absolute;
+	top:500px;
+	left:0px;
+	width:100%;
+	z-index: 0;
+	background: white;
+}
+
+#content {
+	font-weight:400;
+	text-align: left;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 100px;
+}
+
+#content h1 {
+	line-height:1.5em;
+}
+
+#content h3 {
+	display: inline;
+}
+
+#content img {
+	width:300px;
+}
