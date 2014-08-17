@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Connect Four Site</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src=knightour.js></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div>
+		<h1 id="title">The Knight's Tour</h1>
+	</div>
+	<div id="activeSpace">
+	<div id="buttons">
+		<br>Board Size <br>
+			<input type="text" id="board_size">
+			<button type="button" onclick="changeSize()">Change Board Size</button>
+		<br>
+		<br>Start Column<br>
+			<input type="text" id="start_col">
+			<button type="button" onclick="changeCol()">Change Column</button>
+		<br>
+		<br>Start Row<br>
+			<input type="text" id="start_row">
+			<button type="button" onclick="changeRow()">Change Row</button>
+		<br>
+		<p id="summary">The board is currently 8 by 8 and the starting coordinates are 0,0</p>
+		<div id="message_area">
+			<p id="message"></p>
+		</div>
+		<button type="button" onclick="startKnightour()">Find a solution!</button>
+	</div>
+	<div id="board_space">
+		<p> Many people, whether out shopping, reading the newspaper, or watching a movie come across a challenging problem: how do you find a way for a knight to move around a chess board in such a way that it lands on each square exactly once? This is my JavaScript/HTML/CSS solution of the Knight's Tour Problem. </p>
+		<p> It works by taking advantage of a heuristic method called Waldorff's rule. This avoids the problem of having to recursively check every possible combination of moves the knight could take. Instead, the code simply analyses the valid moves the knight could make at each point, and chooses the one with the fewest valid moves from it. I hope my code solves your daily struggle to solve this problem. Enjoy! </p>
+	</div>
+	</div>
+</body>

@@ -1,0 +1,48 @@
+body {
+	background:white;
+	font-family:Lato,'Helvetica Neue',Helvetica;
+	color:black;
+	text-align:center;
+}
+
+#activeSpace {
+	width:400px;
+	background:#99CCFF;
+	margin:auto;
+	padding:15px;
+}
+
+#message {
+	color:gray;
+	padding-left:50px;
+	padding-right:50px;
+}
+
+#board_space {
+	width:400px;
+	margin:auto;
+	text-align:left;
+}
+
+#knightourBoard {
+	text-align:center;
+	background:black;
+	width:400px;
+	height:400px;
+	margin-top:25px;
+}
+		.whiteSquare {
+			background:beige;
+		}
+
+		.blackSquare {
+			background:gray;
+		}
+
+		.currentKnight {
+			background:blue;
+		}
+
+		.usedSquare {
+			background:red;
+		}
