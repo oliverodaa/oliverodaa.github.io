@@ -449,7 +449,7 @@ function positionValue(position,depth) {
 	if (typeof primValue == "string") {
 		return primValue;
 	}
-	else if (depth <= 0 || isNaN(depth)) {
+	else if (fullColumns(position) < 5 && (depth <= 0 || isNaN(depth))) {
 		return clone(primValue).reverse();
 	}
 	else {
@@ -491,6 +491,16 @@ function childPositions(position,validCols) {
 		outputArray.push(newPosition(position,validCols[i]));
 	}
 	return outputArray;
+}
+
+function fullColumns(position) {
+	var count = 0;
+	for (var i=0;i<7;i++) {
+		if (position[i].length == 6) {
+			count ++;
+		}
+	}
+	return count;
 }
 
 function newPosition(position,column) {
