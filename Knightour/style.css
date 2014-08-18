@@ -2,10 +2,11 @@ body {
 	background:white;
 	font-family:Lato,'Helvetica Neue',Helvetica;
 	color:black;
-	text-align:center;
+	text-align:left;
 }
 
 #activeSpace {
+	text-align:left;
 	width:400px;
 	background:#99CCFF;
 	margin:auto;
@@ -18,25 +19,24 @@ body {
 	padding-right:50px;
 }
 
-#board_space {
-	width:400px;
-	margin:auto;
-	text-align:left;
+#theBoard {
+	width:100%;
 }
 
 #knightourBoard {
 	text-align:center;
 	background:black;
-	width:400px;
-	height:400px;
+	width:100%;
+	min-height:100%;
 	margin-top:25px;
+	margin-bottom:25px;
 }
 		.whiteSquare {
-			background:beige;
+			background:#F0D9B5;
 		}
 
 		.blackSquare {
-			background:gray;
+			background:#B58863;
 		}
 
 		.currentKnight {

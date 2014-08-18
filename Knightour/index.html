@@ -2,38 +2,92 @@
 <html>
 <head>
 	<title>The Knight's Tour</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+	<link href="../homepage.css" rel="stylesheet">
+	<!-- Specifically Knightour -->
 	<link rel="stylesheet" href="style.css" />
 	<script src=knightour.js></script>
+	<!-- end -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="../favicon.ico" rel="shortcut icon" type="image/icon">
+	<script src="../jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../homepage.js"></script>
 </head>
-
-<body>
-	<div>
-		<h1 id="title">The Knight's Tour</h1>
-	</div>
-	<div id="activeSpace">
-	<div id="buttons">
-		<br>Board Size <br>
-			<input type="text" id="board_size">
-			<button type="button" onclick="changeSize()">Change Board Size</button>
-		<br>
-		<br>Start Column<br>
-			<input type="text" id="start_col">
-			<button type="button" onclick="changeCol()">Change Column</button>
-		<br>
-		<br>Start Row<br>
-			<input type="text" id="start_row">
-			<button type="button" onclick="changeRow()">Change Row</button>
-		<br>
-		<p id="summary">The board is currently 8 by 8 and the starting coordinates are 0,0</p>
-		<div id="message_area">
-			<p id="message"></p>
-		</div>
-		<button type="button" onclick="startKnightour()">Find a solution!</button>
-	</div>
-	<div id="board_space">
-		<p> Many people, whether out shopping, reading the newspaper, or watching a movie come across a challenging problem: how do you find a way for a knight to move around a chess board in such a way that it lands on each square exactly once? This is my JavaScript/HTML/CSS solution of the Knight's Tour Problem. </p>
-		<p> It works by taking advantage of a heuristic method called Waldorff's rule. This avoids the problem of having to recursively check every possible combination of moves the knight could take. Instead, the code simply analyses the valid moves the knight could make at each point, and chooses the one with the fewest valid moves from it. I hope my code solves your daily struggle to solve this problem. Enjoy! </p>
-	</div>
-	</div>
-</body>
+  <body>
+  	<div id="cover_image">
+  		<img src="../static/StinsonBanner.JPG" alt="I took this photo with some friends at Stinson Beach during a meteor shower. Shame you can't see it!" width="100%">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">The Knight's Tour</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	<div id="content_space">
+	  	<div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="../">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="../">About</a></li>
+	  						<li><a href="../resume">R&eacute;sum&eacute;</a></li>
+	  						<li class="active"><a href="../projects">Projects</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	<div class="container-fluid">
+	      <div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div id="buttons" class="form-group">
+					<br>
+					<label>Board Size</label>
+					<br>
+						<input type="text" id="board_size" class="form-control"  placeholder="Board Size">
+						<button type="button" onclick="changeSize()" class="btn btn-default">Change Board Size</button>
+					<br><br>
+					<label>Start Column</label>
+					<br>
+						<input type="text" id="start_col" class="form-control" placeholder="Starting Column">
+						<button type="button" onclick="changeCol()" class="btn btn-default">Change Column</button>
+					<br><br>
+					<label>Start Row</label>
+					<br>
+						<input type="text" id="start_row" class="form-control" placeholder="Starting Row">
+						<button type="button" onclick="changeRow()" class="btn btn-default">Change Row</button>
+					<br>
+					<div id="message"></div>
+					</div>
+					<div class="alert alert-info" role="alert">
+						<p id="summary">
+						The board is currently 8 by 8 and the starting coordinates are 0,0
+						</p>
+					</div>
+					<button type="button" onclick="startKnightour()" class="btn btn-primary">Find a solution!</button>
+					<div id="theBoard">
+						<table id="knightourBoard"><tbody><tr><td class="whiteSquare" id="7,0"></td><td class="blackSquare" id="7,1"></td><td class="whiteSquare" id="7,2"></td><td class="blackSquare" id="7,3"></td><td class="whiteSquare" id="7,4"></td><td class="blackSquare" id="7,5"></td><td class="whiteSquare" id="7,6"></td><td class="blackSquare" id="7,7"></td></tr><tr><td class="blackSquare" id="6,0"></td><td class="whiteSquare" id="6,1"></td><td class="blackSquare" id="6,2"></td><td class="whiteSquare" id="6,3"></td><td class="blackSquare" id="6,4"></td><td class="whiteSquare" id="6,5"></td><td class="blackSquare" id="6,6"></td><td class="whiteSquare" id="6,7"></td></tr><tr><td class="whiteSquare" id="5,0"></td><td class="blackSquare" id="5,1"></td><td class="whiteSquare" id="5,2"></td><td class="blackSquare" id="5,3"></td><td class="whiteSquare" id="5,4"></td><td class="blackSquare" id="5,5"></td><td class="whiteSquare" id="5,6"></td><td class="blackSquare" id="5,7"></td></tr><tr><td class="blackSquare" id="4,0"></td><td class="whiteSquare" id="4,1"></td><td class="blackSquare" id="4,2"></td><td class="whiteSquare" id="4,3"></td><td class="blackSquare" id="4,4"></td><td class="whiteSquare" id="4,5"></td><td class="blackSquare" id="4,6"></td><td class="whiteSquare" id="4,7"></td></tr><tr><td class="whiteSquare" id="3,0"></td><td class="blackSquare" id="3,1"></td><td class="whiteSquare" id="3,2"></td><td class="blackSquare" id="3,3"></td><td class="whiteSquare" id="3,4"></td><td class="blackSquare" id="3,5"></td><td class="whiteSquare" id="3,6"></td><td class="blackSquare" id="3,7"></td></tr><tr><td class="blackSquare" id="2,0"></td><td class="whiteSquare" id="2,1"></td><td class="blackSquare" id="2,2"></td><td class="whiteSquare" id="2,3"></td><td class="blackSquare" id="2,4"></td><td class="whiteSquare" id="2,5"></td><td class="blackSquare" id="2,6"></td><td class="whiteSquare" id="2,7"></td></tr><tr><td class="whiteSquare" id="1,0"></td><td class="blackSquare" id="1,1"></td><td class="whiteSquare" id="1,2"></td><td class="blackSquare" id="1,3"></td><td class="whiteSquare" id="1,4"></td><td class="blackSquare" id="1,5"></td><td class="whiteSquare" id="1,6"></td><td class="blackSquare" id="1,7"></td></tr><tr><td class="blackSquare" id="0,0"></td><td class="whiteSquare" id="0,1"></td><td class="blackSquare" id="0,2"></td><td class="whiteSquare" id="0,3"></td><td class="blackSquare" id="0,4"></td><td class="whiteSquare" id="0,5"></td><td class="blackSquare" id="0,6"></td><td class="whiteSquare" id="0,7"></td></tr></tbody></table>
+					</div>
+				</div>		
+			</div>
+	      </div>
+	    </div>
+  	</div>
+  </body>
+</html>

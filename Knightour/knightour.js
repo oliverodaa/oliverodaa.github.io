@@ -47,7 +47,7 @@ function updateSummary() {
 }
 
 function changeMessageBar(text) {
-	document.getElementById("message").innerHTML = text
+	document.getElementById("message").innerHTML = "<br><div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><p>" + text + "</p></div>"
 }
 
 function startKnightour() {
@@ -61,7 +61,7 @@ function animateBoard(coordinateList) {
 	for (var i=0;i<coordinateList.length;i++) {
 		var localCol = coordinateList[i][0];
 		var localRow = coordinateList[i][1];
-		console.log("localCol is "+ localCol + " localRow is " + localRow);
+		// console.log("localCol is "+ localCol + " localRow is " + localRow);
 		// changeCellClass(localCol,localRow,"currentKnight")
 		changeCellClass(localCol,localRow,i)
 		// changeCellClass(prev[0],prev[1],"usedSquare")
@@ -70,7 +70,7 @@ function animateBoard(coordinateList) {
 }
 
 function changeCellClass(thisCol,thisRow,className) {
-	console.log("col is "+thisCol+" row is "+thisRow)
+	// console.log("col is "+thisCol+" row is "+thisRow)
 	// document.getElementById(thisCol.toString()+","+thisRow.toString()).className = className;
 	document.getElementById(thisCol.toString()+","+thisRow.toString()).innerHTML = className;
 }
@@ -88,7 +88,7 @@ function resetHtmlBoard() {
 	}
 	HTML_Board.push("</table>");
 	HTML_Board = HTML_Board.join("");
-	document.getElementById("board_space").innerHTML = HTML_Board;
+	document.getElementById("theBoard").innerHTML = HTML_Board;
 }
 
 function blackOrWhite(row,col) {
