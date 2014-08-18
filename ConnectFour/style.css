@@ -5,6 +5,10 @@ body {
 	text-align:center;
 }
 
+#cover_space {
+	background-color:#428bca;
+}
+
 #start {
 	padding:15px;
 	padding-bottom:0px;

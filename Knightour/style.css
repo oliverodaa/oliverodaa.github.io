@@ -5,6 +5,10 @@ body {
 	text-align:left;
 }
 
+#cover_space {
+	background:#B58863;
+}
+
 #activeSpace {
 	text-align:left;
 	width:400px;
