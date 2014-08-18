@@ -47,7 +47,7 @@ function updateSummary() {
 }
 
 function changeMessageBar(text) {
-	document.getElementById("message").innerHTML = "<br><div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><p>" + text + "</p></div>"
+	document.getElementById("message").innerHTML = "<div class='alert alert-danger alert-dismissible' role='alert'><br><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><p>" + text + "</p></div>"
 }
 
 function startKnightour() {
