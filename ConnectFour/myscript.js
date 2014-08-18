@@ -162,7 +162,7 @@ function resetNumberedBoard(rows,columns) {
 	}
 	HTML_Board.push("</table>");
 	HTML_Board = HTML_Board.join("");
-	document.getElementById("board_space").innerHTML = HTML_Board;
+	document.getElementById("theBoard").innerHTML = HTML_Board;
 }
 
 function resetGlobalPosition() {

@@ -21,7 +21,7 @@ $(document).ready(function () {
 })
 
 function resizeBoard() {
-	$('#board_space').height($('#board_space').width()); 
+	$('#theBoard').height($('#theBoard').width()); 
 }
 
 $(document).ready(function () {

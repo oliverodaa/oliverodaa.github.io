@@ -7,18 +7,32 @@ body {
 
 #start {
 	padding:15px;
+	padding-bottom:0px;
 	text-align:left;
+}
+
+#difficulty {
+	padding:5px;
+	border-radius:5px;
+	text-align:center;
 }
 
 #message {
 	padding:55px;
-	background:#3071a9;
 	color:white;
+}
+
+#theBoard {
+	padding:15px;
 }
 
 #board_space {
 	padding:15px;
+	margin:15px;
+	margin-bottom:50px;
 	background:#3071a9;
+	color:white;
+	border-radius:5px;
 }
 
 #connectBoard {
