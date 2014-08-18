@@ -103,10 +103,10 @@ function getPlayerName(token) {
 		return "The Computer"
 	}
 	else if (token == playerOneToken) {
-		return "Yellow"
+		return "White"
 	}
 	else {
-		return "Red"
+		return "Black"
 	}
 }
 
