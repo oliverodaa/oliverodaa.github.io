@@ -6,45 +6,39 @@ body {
 }
 
 #start {
-	width:400px;
-	background:#99CCFF;
-	margin:auto;
 	padding:15px;
 }
 
-#input_area {
-	width:400px;
-	height:130px;
-}
-
 #message {
-	padding-top:55px;
-}
-
-#board_space {
-	width:400px;
-	margin:auto;
-	text-align:left;
+	padding:55px;
+	background:#3071a9;
+	color:white;
 }
 
 #connectBoard {
 	text-align:center;
-	background:blue;
-	width:400px;
-	height:400px;
+	width:100%;
+	min-height:100%;
+	background:#3071a9;
 	margin-top:0px;
 }
 	td {
 		border-radius:50%;
+		padding:0px;
+	}
+
+	#connectBoard button {
+		width:75%;
+		height:75%;
 	}
 		.empty {
-			background:gray;
+			background:#428bca;
 		}
 
 		.x {
-			background:yellow;
+			background:white;
 		}
 
 		.o {
-			background:red;
+			background:black;
 		}

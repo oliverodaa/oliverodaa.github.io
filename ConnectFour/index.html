@@ -1,32 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Connect Four Site</title>
-	<link rel="stylesheet" href="style.css" />
+	<title>Connect Four</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+	<link href="../homepage.css" rel="stylesheet">
+	<!-- Specifically Connect Four -->
+	<link rel="stylesheet" href="style.css">
 	<script src=myscript.js></script>
+	<!-- end -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="../favicon.ico" rel="shortcut icon" type="image/icon">
+	<script src="../jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../homepage.js"></script>
 </head>
-
-<body>
-	<div onclick="changeText()">
-		<h1 id="title">Connect Four Game!</h1>
-	</div>
-	<div id="start">
-		<br>
-		<button type="button" onclick="startConnectFour()">Start New Game!</button>
-		<br><br>
-		AI Difficulty (1 to 9): <br>
-		<input type="text" id="AI_Difficulty">
-		<button type="button" onclick="changeDifficulty()">Change Difficulty</button>
-		<p id="difficulty">Difficulty is 5</p>
-	<div>
-	</div>
-	<div id="board_space">
-		<p>This is my JavaScript/HTML/CSS implementation of Connect Four. It me took a lot of effort to create this recursive AI that looks at thousands of combinations of moves in order to beat you every time. </p>
-		<p>Click "Start New Game!" above, and feel free to change the difficulty at any time. Be aware, though, that the processing time increases exponentially as you increase the difficulty number. </p>
-		<p>Here is <a href=static/ChartImg.png> a link </a> to a dependency chart that I made to help myself understand the code.</p>
-	</div>
-	<div id="input_area">
-		<p id="message">Let's Play!<p>
-	</div>
-</body>
+  <body>
+  	<div id="cover_image">
+  		<img src="../static/StinsonBanner.JPG" alt="I took this photo with some friends at Stinson Beach during a meteor shower. Shame you can't see it!" width="100%">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Connect Four</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	<div id="content_space">
+	  	<div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="../">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="../">About</a></li>
+	  						<li class="active"><a href="../resume">R&eacute;sum&eacute;</a></li>
+	  						<li><a href="../projects">Projects</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	<div class="container-fluid">
+	      <div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div id="start">
+					<br>
+					<button type="button" class="btn btn-default" onclick="startConnectFour()">Start New Game!</button>
+					<br><br>
+					AI Difficulty (1 to 9): <br>
+					<input type="text" id="AI_Difficulty">
+					<button type="button" class="btn btn-default" onclick="changeDifficulty()">Change Difficulty</button>
+					<p id="difficulty">Difficulty is 5</p>
+				</div>
+				<div id="board_space">
+					<p>This is my JavaScript/HTML/CSS implementation of Connect Four. It me took a lot of effort to create this recursive AI that looks at thousands of combinations of moves in order to beat you every time. </p>
+					<p>Click "Start New Game!" above, and feel free to change the difficulty at any time. Be aware, though, that the processing time increases exponentially as you increase the difficulty number. </p>
+					<p>Here is <a href=static/ChartImg.png> a link </a> to a dependency chart that I made to help myself understand the code.</p>
+				</div>
+				<div id="input_area">
+					<p id="message">Let's Play!<p>
+				</div>
+			</div>
+	      </div>
+	    </div>
+  	</div>
+  </body>
+</html>

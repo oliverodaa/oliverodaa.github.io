@@ -13,9 +13,18 @@ function checkWidth() {
 }
 
 $(document).ready(function () {
-	var longTitle = ($('#title').text().length > 12)
+	var longTitle = ($('#title').text().length > 8);
 	if (longTitle) {
-		checkWidth()
-		$(window).resize(checkWidth())
+		checkWidth();
+		$(window).resize(checkWidth);
 	}
+})
+
+function resizeBoard() {
+	$('#board_space').height($('#board_space').width()); 
+}
+
+$(document).ready(function () {
+	resizeBoard();
+	$(window).resize(resizeBoard);
 })

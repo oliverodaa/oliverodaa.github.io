@@ -113,7 +113,7 @@ function getPlayerName(token) {
 function createButtonRow(length) {
 	var buttonRow = ["<tr class='buttonRow'>"];
 	for (var col=1;col<=length;col++) {
-		buttonRow.push("<td><button onclick='setTimeout(function() {receiveMove("+col+")},0);'>" + 
+		buttonRow.push("<td><button class='btn btn-default' onclick='setTimeout(function() {receiveMove("+col+")},0);'>" + 
 						col.toString() + "</button></td>");
 	}
 	buttonRow.push("</tr>");
