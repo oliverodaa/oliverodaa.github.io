@@ -32,9 +32,9 @@ function resizeBoard() {
 		console.log("spaceWidth is "+spaceWidth)
 		// console.log("maxWidth is "+maxWidth)
 		var paddingWidth = (spaceWidth - maxWidth)/2;
-		// console.log("Changing padding to: " + paddingWidth.toString());
-		$('#boardBox').css({"padding":paddingWidth.toString()+"px"})
-		$('#boardBox').css({"padding-top":"0px"})
+		console.log("Changing padding to: " + paddingWidth.toString());
+		$('#boardBox').css({"padding-left":paddingWidth.toString()+"px"});
+		$('#boardBox').css({"padding-right":paddingWidth.toString()+"px"})
 	}
 	$('#theBoard').height($('#theBoard').width())
 }

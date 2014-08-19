@@ -28,7 +28,8 @@ function startConnectFour() {
 	// Called by "start new game" button
 	// resetNumberedBoard
 	// resetPosition
-	globalGameWon = false
+	changeDifficulty();
+	globalGameWon = false;
 	resetNumberedBoard(6,7);
 	resetGlobalPosition();
 	resetTokens();
