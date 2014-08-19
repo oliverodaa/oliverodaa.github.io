@@ -2,8 +2,25 @@ var size = 8;
 var col = 0;
 var row = 0;
 var speed = 1000;
-var continueTour = true;
+var currentTour = 0;
 var globalPosition = [];
+
+function startKnightour() {
+	currentTour ++
+	// receving input
+	changeSize();
+	changeCol();
+	changeRow();
+	changeSpeed();
+	// applying game
+	resetHtmlBoard()
+	setTimeout(resetHtmlBoard,speed-1);
+	console.log("col is "+col)
+	console.log("row is " + row)
+    var coordinateList = knightour(createPosition(),col,row,[]);
+    console.log("in start, it's " + coordinateList)
+	animateBoard(coordinateList,0,currentTour)
+}
 
 function changeSize() {
 	var sizeInput = document.getElementById("board_size").value;
@@ -17,19 +34,18 @@ function changeSize() {
 		}
 		updateSummary();
 	}
-	else {
+	else if (sizeInput != "") {
 		changeMessageBar("Sorry, board size must be a positive number no greater than 100.");
 	}
 }
 
 function changeCol() {
 	var colInput = document.getElementById("start_col").value;
-	console.log(colInput)
 	if (!isNaN(colInput) && colInput > 0 && colInput < parseInt(size)) {
-		col = colInput;
+		col = parseInt(colInput);
 		updateSummary();
 	}
-	else {
+	else if (colInput != "") {
 		changeMessageBar("Sorry, column input must be a number small enough to fit on the board.");
 	}
 }
@@ -37,10 +53,10 @@ function changeCol() {
 function changeRow() {
 	var rowInput = document.getElementById("start_row").value;
 	if (!isNaN(rowInput) && rowInput > 0 && rowInput < parseInt(size)) {
-		row = rowInput;
+		row = parseInt(rowInput);
 		updateSummary();
 	}
-	else {
+	else if (rowInput != "") {
 		changeMessageBar("Sorry, row input must be a number small enough to fit on the board.");
 	}
 }
@@ -54,7 +70,7 @@ function changeSpeed() {
 			changeMessageBar("You want to wait 30 seconds for each animation? Your choice I guess.")
 		}
 	}
-	else {
+	else if (speedInput != "") {
 		changeMessageBar("Time doesn't work like that. You're just being silly.")
 	}
 }
@@ -67,18 +83,10 @@ function changeMessageBar(text) {
 	document.getElementById("message").innerHTML = "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><p>" + text + "</p></div>"
 }
 
-function startKnightour() {
-	continueTour = false
-	setTimeout(function () {
-		resetHtmlBoard();
-	    var coordinateList = knightour(createPosition(),col,row,[]);
-		continueTour = true;
-		animateBoard(coordinateList,0)},1000);
-}
-
-function animateBoard(coordinateList,i) {
+function animateBoard(coordinateList,i,tourNum) {
+	console.log("coordinateList is " + coordinateList)
 	function callWithTimeout(i) {
-		setTimeout(function () {animateBoard(coordinateList,i)},speed)
+		setTimeout(function () {animateBoard(coordinateList,i,tourNum)},speed)
 	}
 	var localCol = coordinateList[i][0];
 	var localRow = coordinateList[i][1];
@@ -93,7 +101,7 @@ function animateBoard(coordinateList,i) {
 			changeCellClass(prevCol,prevRow,"usedSquareBlack");
 		}
 	}
-	if (continueTour && i<coordinateList.length) {
+	if (tourNum==currentTour && i<coordinateList.length) {
 		callWithTimeout(i+1);
 	}
 }
@@ -141,10 +149,10 @@ function createPosition() {
 function findNextMove(position,col,row) {
 	var validSpots = validMoves(position,col,row);
 	var lowestValue = 9;
-	var bestRowCol = undefined;
+	var bestRowCol = validSpots[0];
 	for (var i=0;i<validSpots.length;i++) {
 		var movesFromMove = validMoves(position,validSpots[i][0],validSpots[i][1]).length
-		if (movesFromMove < lowestValue) {
+		if (movesFromMove > 0 && movesFromMove < lowestValue) {
 			lowestValue = movesFromMove;
 			bestRowCol = validSpots[i];
 		}

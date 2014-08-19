@@ -21,7 +21,22 @@ $(document).ready(function () {
 })
 
 function resizeBoard() {
-	$('#theBoard').height($('#theBoard').width()); 
+	var spaceWidth = $('#boardDiv').width();
+	var windowHeight = $(window).height();
+	var maxWidth = windowHeight - 100;
+	if (spaceWidth < maxWidth) {
+		console.log("good size")
+		$('#boardBox').css({"margin":"0px"})
+	}
+	else {
+		console.log("spaceWidth is "+spaceWidth)
+		// console.log("maxWidth is "+maxWidth)
+		var paddingWidth = (spaceWidth - maxWidth)/2;
+		// console.log("Changing padding to: " + paddingWidth.toString());
+		$('#boardBox').css({"padding":paddingWidth.toString()+"px"})
+		$('#boardBox').css({"padding-top":"0px"})
+	}
+	$('#theBoard').height($('#theBoard').width())
 }
 
 $(document).ready(function () {
