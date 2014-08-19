@@ -9,18 +9,8 @@ body {
 	background:#B58863;
 }
 
-#activeSpace {
-	text-align:left;
-	width:400px;
-	background:#99CCFF;
-	margin:auto;
-	padding:15px;
-}
-
 #message {
 	color:gray;
-	padding-left:50px;
-	padding-right:50px;
 }
 
 #theBoard {
@@ -29,12 +19,16 @@ body {
 
 #knightourBoard {
 	text-align:center;
-	background:black;
+	background:white;
 	width:100%;
 	min-height:100%;
 	margin-top:25px;
 	margin-bottom:25px;
 }
+
+	td {
+		width:1px;
+	}
 		.whiteSquare {
 			background:#F0D9B5;
 		}
@@ -44,9 +38,16 @@ body {
 		}
 
 		.currentKnight {
-			background:blue;
+			background:white;
 		}
 
-		.usedSquare {
-			background:red;
+		.usedSquareBlack {
+			/*background:rgba(181,136,99,0.5);*/
+			background:#3071A9;
+
+		}
+
+		.usedSquareWhite {
+			/*background:rgba(240,217,181,0.5);*/
+			background:#82BEFB;
 		}

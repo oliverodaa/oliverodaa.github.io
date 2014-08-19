@@ -1,6 +1,8 @@
 var size = 8;
 var col = 0;
 var row = 0;
+var speed = 1000;
+var continueTour = true;
 var globalPosition = [];
 
 function changeSize() {
@@ -20,10 +22,11 @@ function changeSize() {
 	}
 }
 
-function changeCol(name) {
+function changeCol() {
 	var colInput = document.getElementById("start_col").value;
-	if (!isNaN(colInput) && colInput > 0 && colInput < size) {
-		col = colInput
+	console.log(colInput)
+	if (!isNaN(colInput) && colInput > 0 && colInput < parseInt(size)) {
+		col = colInput;
 		updateSummary();
 	}
 	else {
@@ -31,10 +34,10 @@ function changeCol(name) {
 	}
 }
 
-function changeRow(name) {
+function changeRow() {
 	var rowInput = document.getElementById("start_row").value;
-	if (!isNaN(rowInput) && rowInput > 0 && rowInput < size) {
-		row = rowInput
+	if (!isNaN(rowInput) && rowInput > 0 && rowInput < parseInt(size)) {
+		row = rowInput;
 		updateSummary();
 	}
 	else {
@@ -42,8 +45,22 @@ function changeRow(name) {
 	}
 }
 
+function changeSpeed() {
+	var speedInput = document.getElementById("speed").value;
+	if (!isNaN(speedInput) && speedInput > 0) {
+		speed = speedInput*1000;
+		updateSummary();
+		if (speedInput > 30) {
+			changeMessageBar("You want to wait 30 seconds for each animation? Your choice I guess.")
+		}
+	}
+	else {
+		changeMessageBar("Time doesn't work like that. You're just being silly.")
+	}
+}
+
 function updateSummary() {
-	document.getElementById("summary").innerHTML = "The board is currently "+size+" by "+size+" and the starting coordinates are "+row+","+col 
+	document.getElementById("summary").innerHTML = "The board will be "+size+" by "+size+" and the starting coordinates will be "+row+","+col+". The speed will be "+speed/1000+"s per move."
 }
 
 function changeMessageBar(text) {
@@ -51,28 +68,38 @@ function changeMessageBar(text) {
 }
 
 function startKnightour() {
-	resetHtmlBoard();
-	var coordinateList = knightour(createPosition(),col,row,[]);
-	animateBoard(coordinateList);
+	continueTour = false
+	setTimeout(function () {
+		resetHtmlBoard();
+	    var coordinateList = knightour(createPosition(),col,row,[]);
+		continueTour = true;
+		animateBoard(coordinateList,0)},1000);
 }
 
-function animateBoard(coordinateList) {
-	var prev = [col,row]
-	for (var i=0;i<coordinateList.length;i++) {
-		var localCol = coordinateList[i][0];
-		var localRow = coordinateList[i][1];
-		// console.log("localCol is "+ localCol + " localRow is " + localRow);
-		// changeCellClass(localCol,localRow,"currentKnight")
-		changeCellClass(localCol,localRow,i)
-		// changeCellClass(prev[0],prev[1],"usedSquare")
-		prev = [localCol,localRow]
+function animateBoard(coordinateList,i) {
+	function callWithTimeout(i) {
+		setTimeout(function () {animateBoard(coordinateList,i)},speed)
+	}
+	var localCol = coordinateList[i][0];
+	var localRow = coordinateList[i][1];
+	changeCellClass(localCol,localRow,"currentKnight");
+	if (i>0) {
+		prevCol = coordinateList[i-1][0];
+		prevRow = coordinateList[i-1][1];
+		if (blackOrWhite(prevCol,prevRow) == "'whiteSquare'") {
+			changeCellClass(prevCol,prevRow,"usedSquareWhite");
+		}
+		else {
+			changeCellClass(prevCol,prevRow,"usedSquareBlack");
+		}
+	}
+	if (continueTour && i<coordinateList.length) {
+		callWithTimeout(i+1);
 	}
 }
 
 function changeCellClass(thisCol,thisRow,className) {
-	// console.log("col is "+thisCol+" row is "+thisRow)
-	// document.getElementById(thisCol.toString()+","+thisRow.toString()).className = className;
-	document.getElementById(thisCol.toString()+","+thisRow.toString()).innerHTML = className;
+	document.getElementById(thisCol.toString()+","+thisRow.toString()).className = className;
 }
 
 function resetHtmlBoard() {

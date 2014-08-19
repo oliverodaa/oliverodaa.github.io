@@ -73,10 +73,15 @@
 						<input type="text" id="start_row" class="form-control" placeholder="Starting Row">
 						<button type="button" onclick="changeRow()" class="btn btn-default">Change Row</button>
 					<br><br>
+					<label>Animation Speed</label>
+					<br>
+						<input type="text" id="speed" class="form-control" placeholder="Seconds per move">
+						<button type="button" onclick="changeSpeed()" class="btn btn-default">Change Speed</button>
+					<br><br>
 					<div id="message"></div>
 					<div class="alert alert-info" role="alert">
 						<p id="summary">
-						The board is currently 8 by 8 and the starting coordinates are 0,0
+						The board will be 8 by 8 and the starting coordinates will be 0,0. The speed will be 1s per move.
 						</p>
 					</div>
 					<button type="button" onclick="startKnightour()" class="btn btn-primary">Find a solution!</button>
