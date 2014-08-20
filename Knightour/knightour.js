@@ -117,7 +117,7 @@ function resetHtmlBoard() {
 	for (var tableRow=size-1; tableRow>=0;tableRow--) {
 		HTML_Board.push("<tr>");
 		for (var tableCol=0;tableCol<size;tableCol++) {
-			HTML_Board.push("<td class="+blackOrWhite(tableRow,tableCol)+"id="+tableRow.toString()+","+tableCol.toString()+"></td>")
+			HTML_Board.push("<td class="+blackOrWhite(tableRow,tableCol)+"id="+tableRow.toString()+","+tableCol.toString()+">&nbspc;</td>")
 		}
 		HTML_Board.push("</tr>");
 	}
