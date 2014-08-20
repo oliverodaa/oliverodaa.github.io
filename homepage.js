@@ -1,3 +1,6 @@
+// The point of this function is to make sure that
+// when it changes to fixed position, the page 
+// doesn't have a gap in it
 $(function() {
 	$('#nav-wrapper').height($('#nav').height());
 })
@@ -25,18 +28,20 @@ function resizeBoard() {
 	var windowHeight = $(window).height();
 	var maxWidth = windowHeight - 100;
 	if (spaceWidth < maxWidth) {
-		console.log("good size")
+		// console.log("good size")
 		$('#boardBox').css({"margin":"0px"})
 	}
 	else {
-		console.log("spaceWidth is "+spaceWidth)
+		// console.log("spaceWidth is "+spaceWidth)
 		// console.log("maxWidth is "+maxWidth)
 		var paddingWidth = (spaceWidth - maxWidth)/2;
-		console.log("Changing padding to: " + paddingWidth.toString());
+		// console.log("Changing padding to: " + paddingWidth.toString());
 		$('#boardBox').css({"padding-left":paddingWidth.toString()+"px"});
-		$('#boardBox').css({"padding-right":paddingWidth.toString()+"px"})
+		$('#boardBox').css({"padding-right":paddingWidth.toString()+"px"});
 	}
-	$('#theBoard').height($('#theBoard').width())
+	$('#theBoard').height($('#theBoard').width());
+	$('#connectBoard td').height($('#theBoard').width()/7);
+	$('#knightourBoard td').height($('#theBoard').width()/boardSize);
 }
 
 $(document).ready(function () {
