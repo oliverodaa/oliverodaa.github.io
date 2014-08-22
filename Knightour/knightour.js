@@ -12,6 +12,7 @@ function startKnightour() {
 	changeCol();
 	changeRow();
 	changeSpeed();
+	resizeBoard(); // resizeBoard is in homepage.js
 	// applying game
 	resetHtmlBoard()
 	setTimeout(resetHtmlBoard,speed-1);

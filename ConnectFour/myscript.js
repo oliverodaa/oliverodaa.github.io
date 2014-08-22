@@ -33,6 +33,8 @@ function startConnectFour() {
 	resetNumberedBoard(6,7);
 	resetGlobalPosition();
 	resetTokens();
+	// resizeBoard is in homepage.js
+	resizeBoard();
 }
 
 function changeDifficulty() {
