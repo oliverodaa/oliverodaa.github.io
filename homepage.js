@@ -25,8 +25,10 @@ function resizeBoard() {
 	}
 	$('#theBoard').height($('#theBoard').width());
 	$('#connectBoard td').height($('#theBoard').width()/7);
+	// console.log("boardSize is " + boardSize);
 	$('#knightourBoard td').height($('#theBoard').width()/boardSize);
 }
+
 
 $(document).ready(function() {
 	// This fills the gap left when the navbar becomes "sticky"
@@ -34,7 +36,6 @@ $(document).ready(function() {
 })
 
 $(document).ready(function () {
-	console.log("longtitle")
 	var longTitle = ($('#title').text().length > 8);
 	if (longTitle) {
 		checkWidth();
@@ -44,7 +45,6 @@ $(document).ready(function () {
 $(window).resize(checkWidth);
 
 $(document).ready(function () {
-	console.log("resize board")
 	resizeBoard();
 })
 

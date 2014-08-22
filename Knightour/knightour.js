@@ -1,4 +1,4 @@
-var size = 8;
+var boardSize = 8;
 var col = 0;
 var row = 0;
 var speed = 1000;
@@ -6,43 +6,46 @@ var currentTour = 0;
 var globalPosition = [];
 
 function startKnightour() {
-	currentTour ++
+	currentTour ++;
 	// receving input
 	changeSize();
 	changeCol();
 	changeRow();
 	changeSpeed();
-	resizeBoard(); // resizeBoard is in homepage.js
 	// applying game
 	resetHtmlBoard()
-	setTimeout(resetHtmlBoard,speed-1);
-	console.log("col is "+col)
-	console.log("row is " + row)
+	resizeBoard(); // resizeBoard is in homepage.js
+	setTimeout(function () {
+		resetHtmlBoard();
+		resizeBoard();
+	},speed-1);
+	// console.log("col is "+col)
+	// console.log("row is " + row)
     var coordinateList = knightour(createPosition(),col,row,[]);
-    console.log("in start, it's " + coordinateList)
+    // console.log("in start, it's " + coordinateList)
 	animateBoard(coordinateList,0,currentTour)
 }
 
 function changeSize() {
 	var sizeInput = document.getElementById("board_size").value;
 	if (!isNaN(sizeInput) && sizeInput > 0 && sizeInput < 101) {
-		size = sizeInput;
-		if (size <= col) {
-			col = size - 1;
+		boardSize = sizeInput;
+		if (boardSize <= col) {
+			col = boardSize - 1;
 		}
-		if (size <= row) {
-			row = size - 1;
+		if (boardSize <= row) {
+			row = boardSize - 1;
 		}
 		updateSummary();
 	}
 	else if (sizeInput != "") {
-		changeMessageBar("Sorry, board size must be a positive number no greater than 100.");
+		changeMessageBar("Sorry, board boardSize must be a positive number no greater than 100.");
 	}
 }
 
 function changeCol() {
 	var colInput = document.getElementById("start_col").value;
-	if (!isNaN(colInput) && colInput > 0 && colInput < parseInt(size)) {
+	if (!isNaN(colInput) && colInput > 0 && colInput < parseInt(boardSize)) {
 		col = parseInt(colInput);
 		updateSummary();
 	}
@@ -53,7 +56,7 @@ function changeCol() {
 
 function changeRow() {
 	var rowInput = document.getElementById("start_row").value;
-	if (!isNaN(rowInput) && rowInput > 0 && rowInput < parseInt(size)) {
+	if (!isNaN(rowInput) && rowInput > 0 && rowInput < parseInt(boardSize)) {
 		row = parseInt(rowInput);
 		updateSummary();
 	}
@@ -77,7 +80,7 @@ function changeSpeed() {
 }
 
 function updateSummary() {
-	document.getElementById("summary").innerHTML = "The board will be "+size+" by "+size+" and the starting coordinates will be "+row+","+col+". The speed will be "+speed/1000+"s per move."
+	document.getElementById("summary").innerHTML = "The board will be "+boardSize+" by "+boardSize+" and the starting coordinates will be "+row+","+col+". The speed will be "+speed/1000+"s per move."
 }
 
 function changeMessageBar(text) {
@@ -85,7 +88,7 @@ function changeMessageBar(text) {
 }
 
 function animateBoard(coordinateList,i,tourNum) {
-	console.log("coordinateList is " + coordinateList)
+	// console.log("coordinateList is " + coordinateList)
 	function callWithTimeout(i) {
 		setTimeout(function () {animateBoard(coordinateList,i,tourNum)},speed)
 	}
@@ -115,9 +118,9 @@ function resetHtmlBoard() {
 	// Creates an HTML table with id="row,col" 
 	// and class="whiteSquare"/"blackSquare"
 	var HTML_Board = ["<table id='knightourBoard'>"];
-	for (var tableRow=size-1; tableRow>=0;tableRow--) {
+	for (var tableRow=boardSize-1; tableRow>=0;tableRow--) {
 		HTML_Board.push("<tr>");
-		for (var tableCol=0;tableCol<size;tableCol++) {
+		for (var tableCol=0;tableCol<boardSize;tableCol++) {
 			HTML_Board.push("<td class="+blackOrWhite(tableRow,tableCol)+"id="+tableRow.toString()+","+tableCol.toString()+"></td>")
 		}
 		HTML_Board.push("</tr>");
@@ -138,9 +141,9 @@ function blackOrWhite(row,col) {
 
 function createPosition() {
 	var position = []
-	for (var i=0;i<size;i++) {
+	for (var i=0;i<boardSize;i++) {
 		position.push([]);
-		for (var c=0;c<size;c++) {
+		for (var c=0;c<boardSize;c++) {
 			position[i].push("free");
 		}
 	}
