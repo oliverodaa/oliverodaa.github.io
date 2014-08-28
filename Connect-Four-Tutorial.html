@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How I Made Connect Four</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/homepage.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+	<script src="/googleTracking.js"></script>
+	<script src="/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/homepage.js"></script>
+</head>
+  <body>
+  	<div id="cover_image">
+  		<img src="/static/StinsonBanner.JPG" alt="I took this photo with some friends at Stinson Beach during a meteor shower. Shame you can't see it!" width="100%">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">How I Made Connect Four</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="/">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="/about">About</a></li>
+	  						<li><a href="/resume">R&eacute;sum&eacute;</a></li>
+	  						<li><a href="/projects">Projects</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<div class="container-fluid">
+	      <div class="row">
+	        <div class="col-md-4 col-md-offset-4">
+				<h1 id="introduction">Introduction</h1>
+
+<p>When I decided to make an AI for Connect Four in my first Computer Science course, I knew it would be a challenge, but a rewarding one. </p>
+
+<p>Connect Four is a fantastic game for learning Computer Science techniques because the various elements that need to be recreated lend themselves logically to a programming language:</p>
+
+<ul>
+  <li>
+    <p>The 7x6 structure of the board can be represented effectively by a list of lists (or array of arrays, in JavaScript’s case)</p>
+  </li>
+  <li>
+    <p>Its winning conditions - to get four tokens of the same colour in a row either diagonally, horizontally, or vertically - are challenging to check for efficiently, but it is entirely possible to do so.</p>
+  </li>
+  <li>
+    <p>The fact that the game is turn-based and does not invoke any chance means that it’s compatible with the <a href="http://en.wikipedia.org/wiki/Minimax">Minimax Algorithm</a> for calculating computer moves. Writing an AI with minimax is a great way to practice the “leap of faith” that recursion requires.</p>
+  </li>
+</ul>
+
+<p><img src="/static/connectfour.png" width="300px" /></p>
+
+<h3 id="complete-files-for-reference">Complete Files for Reference</h3>
+
+<p>Before we begin, I want to share the completed files from my three attempts at a Connect Four algorithm.</p>
+
+<h4 id="snap">Snap!</h4>
+
+<p>My original attempt was in the visual programming language, Snap! As it was my final project for CS10, Berkeley’s introductory Computer Science course, I made <a href="https://www.youtube.com/watch?v=m4II3Jqfgjw">this video</a> explaining it. I should warn you that I talk pretty quickly in the video; I had to speed the video up to fit class requirements!</p>
+
+<h4 id="python">Python</h4>
+
+<p>During the summer of 2014 I revisited the code because I wanted to implement a proper Minimax AI. While my Snap! implementation manually looked forward two and three moves to check for winning and losing choices, for the first time I was able to build a Minimax AI that would look forward as many moves as you told it to!</p>
+
+<p><a href="/static/connect.py">Here’s the Python file</a></p>
+
+<h4 id="javascript">JavaScript</h4>
+
+<p>Following the Python implementation, I wanted to share my game more easily, but most people aren’t comfortable playing a text-based terminal game. There were a couple of challenges that didn’t occur in the Python version, and a lot of things that were made much easier in the JavaScript version. Namely:</p>
+
+<ul>
+  <li>
+    <p>If you refer to an item of a list/array that does not exist in JavaScript you will get <code>undefined</code>, instead of the errors you get in Python. That saves a lot of <code>try:/except:</code> clauses when you’re identifying patterns in a list of lists!</p>
+  </li>
+  <li>
+    <p>JavaScript objects aren’t <em>really</em> equivalent to Python dictionaries. A frustrating difference is that there is no easy way to calculate length without iterating through every single item. That means that when the code memoizes the values (win/lose/draw/”connection score”) of various positions inside a JavaScript object, then counts the number of values in order to impress you with a large number, it’s pretty inefficient.</p>
+  </li>
+  <li>
+    <p>In both JavaScript arrays and Python lists, elements are mutable, meaning that it’s a necessity to create brand new copies of a board position object every time you make a change. Otherwise something like simulating seven different move options will result in each of those simulations messing each other up.</p>
+  </li>
+  <li>
+    <p>It’s a challenge to tie together HTML, CSS, and JavaScript in order to have a pretty appearance. Even more challenging is understanding synchronous vs. asynchronous DOM changes. But I’ll leave explaining that to a dedicated post.</p>
+  </li>
+</ul>
+
+<p>Here is the <a href="/connectfour/">completed page</a>, and here is a link to <a href="/connectfour/myscript.js">the JavaScript on its own</a></p>
+
+<h1 id="explaining-the-code">Explaining the Code</h1>
+
+<p>The code got extremely complex after a while, to the point where I needed to make myself a flow-chart to clarify how all the functions fit together. Unless you have an enormous monitor, you’ll probably need to click on the image below in order to read it.</p>
+
+<p>This flow chart will shape the order of the rest of the article.</p>
+
+<p><a href="/static/chartimg.png"><img src="/static/chartimg.png" width="100%" /></a></p>
+
+
+	        </div>
+	        <div class="col-md-4 ">
+	        	<div class="sidebar_box">
+	<a href="/"><h2>Blog</h2></a>
+	  
+	    <a href="/Coding-Knightour.html">Coding the Knight's Tour</a><br>
+	  
+	    <a href="/Connect-Four-Tutorial.html">How I Made Connect Four</a><br>
+	  
+</div>
+			</div>
+	      </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi, this is my footer. Thank you for coming down this far to look at it.</p></div>
+</body>
+</html>
