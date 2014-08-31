@@ -114,9 +114,114 @@
 
 <p>The code got extremely complex after a while, to the point where I needed to make myself a flow-chart to clarify how all the functions fit together. Unless you have an enormous monitor, you’ll probably need to click on the image below in order to read it.</p>
 
-<p>This flow chart will shape the order of the rest of the article.</p>
+<p>This flow chart will shape the order of the rest of the article, so feel free to open it in another window to follow along.</p>
 
-<p><a href="/static/ChartImg.png"><img src="/static/chartimg.png" width="100%" /></a></p>
+<p><a href="/static/ChartImg.png"><img src="/static/ChartImg.png" width="100%" /></a></p>
+
+<h2 id="basic-ideas-and-definitions">Basic Ideas and Definitions</h2>
+
+<p>It’s important to start off with clear ideas about how you’re going to represent the game. Here are some terms that I’m going to be throwing around that have specific definitions:</p>
+
+<ul>
+  <li>
+    <p>The “board” is literally the board on which the game is played. When I use the word “board” in the context of the web implementation, I’m referring to the visual representation of the game.</p>
+  </li>
+  <li>
+    <p>The word “position” refers to a particular setup of the board. If there are three white squares on the third column of the board then that’s a distinct position from a board with only two white squares in that column.</p>
+  </li>
+  <li>
+    <p>The “current player” is the player who is moving <em>next</em>, not the player who has just moved.</p>
+  </li>
+  <li>
+    <p>The terms “win”, “lose”, and “draw”, as well as the concept of a “connection score” refer to opposite things depending on who is currently playing. It’s the nature of Connect Four that if player 1 wins, player 2 loses. Similarly, a high ratio of connections between player one and player two should be inverted depending on which player is currently playing.</p>
+  </li>
+  <li>
+    <p>“Primitive Value” refers to the value of the position as it currently is. In contrast, “Position Value” refers to the real value of the position. For example, if I am guaranteed a win in five turns, then my current position is the equivalent of a “win”. </p>
+  </li>
+</ul>
+
+<h3 id="global-and-local-positions">Global and Local Positions</h3>
+
+<p>Two things are happening in the code:</p>
+
+<ol>
+  <li>The game is being played. <code>globalPosition</code> is used to take track of the game.</li>
+  <li>For each turn, the AI needs to look ahead a certain number of moves and return its move choice. The variable <code>position</code> is used for each of the thousands of positions that need to be simulated.</li>
+</ol>
+
+<p>Both of these actions require us to keep track of the position. </p>
+
+<p>I chose to represent each board position as an array of arrays where the first seven arrays represent columns, and the eighth value represents the most recent column:</p>
+
+<pre>
+var globalPosition = [[],[],[],[],[],[],[],false];
+var testPosition = 
+[['x', 'o', 'x', 'o', 'x', 'o'], 
+['x', 'x', 'o'], 
+['o'], 
+['x', 'o', 'x', 'o', 'x', 'o'], 
+['o', 'x', 'x'], 
+['o'], 
+['x', 'o', 'x', 'o', 'x', 'o'], 
+4];
+</pre>
+
+<p>You’re probably wondering why it’s necessary to include an eighth value representing the most recent move. The game would work perfectly fine without it, but think about how it would help to have the most recent move when checking for wins, losses, and draws.</p>
+
+<p>Basically, if you know what the most recent move was and you can assume that nobody won the game before that, you can check for wins by counting vertically, horizontally, diagonally-up, and diagonally-down from a single point, rather than looking at the whole board.</p>
+
+<h3 id="basic-minimax-structure-and-changing-difficulty">Basic Minimax Structure and Changing Difficulty</h3>
+
+<p>The challenging thing about Minimax is conceptualising <em>how</em> to look forward multiple moves. </p>
+
+<p>The goal of this function is to calculate the value of a single position from the perspective of the person who will move next. For example, in the image below, the value of the position from the perspective of white is “undecided”. </p>
+
+<p><img src="/static/connectfour2.png" width="300px" /></p>
+
+<p>Consider three scenarios:</p>
+
+<ul>
+  <li>
+    <p>From your current position, all seven moves would lead to a victory for your opponent.</p>
+  </li>
+  <li>
+    <p>From your current position, one of your moves would cause a loss for your opponent.</p>
+  </li>
+  <li>
+    <p>From your current position, six moves would lead to a victory for your opponent, but one would lead to a draw.</p>
+  </li>
+</ul>
+
+<p>What would be the position value of each of these positions from your perspective?</p>
+
+<p>As you’ve probably deduced, the Minimax AI assumes that both players will take a win if they have one, and will take a loss only if they have no other choice.</p>
+
+<h4 id="the-position-value-function">The Position Value Function</h4>
+
+<p>While teaching CS10, <a href="http://www.eecs.berkeley.edu/~ddgarcia/">Dan Garcia</a> shared a fantastic representation of the “position value” function.</p>
+
+<p><a href="/static/positionValue.png"><img src="/static/positionValue.png" width="450px" /></a></p>
+
+<p>As you can see, the function is recursive! </p>
+
+<p>The base case of the function is that the position already has a “primitive value”. In other words, a player has won, lost, or drawn.</p>
+
+<p>If that is not the case, the function calculates the “position value” of each of the possible columns. Each of these position values is found by calling <code>positionValue</code> recursively on each possible position.</p>
+
+<p>Doing so creates an array of values, for example:</p>
+
+<pre>
+// Child values
+['win','lose','lose','lose','lose','lose','draw']
+</pre>
+
+<p>Recursion requires a leap of faith, so let’s just assume those values are there and work for now.</p>
+
+<p>From there, it does the same checks as our example above. However - and this is where Minimax can be confusing - it looks for “losses” and avoids “wins”. That’s because the “child values” are the values of the position from the perspective of our opponent, the next player to move.</p>
+
+<p>In other words, our function maximizes the current player’s success by minimizing the opponent’s success.</p>
+
+<p>In this particular case, our function would return “win”, because at least one of the child values was a loss for our opponent.</p>
 
 
 	        </div>
@@ -134,6 +239,6 @@
 </div>
 
 	</div>
-	<div id="footer_space"><p>Hi, this is my footer. Thank you for coming down this far to look at it.</p></div>
+	<div id="footer_space"><p>Hi. This is a footer, and it will come up on every page of this site because I use a static page templating system called Jekyll. I highly recommend it.</p></div>
 </body>
 </html>
