@@ -57,7 +57,13 @@ function insertAtCaret(content) {
 
 $(document).keypress(function(e) {
 	if (e.charCode==13) {
-        console.log("charCode is " + e.charCode)
-		insertAtCaret(getTimeStamp())
+        console.log("charCode is " + e.charCode);
+		insertAtCaret(getTimeStamp());
+        updateSynced();
 	}
 })
+
+function updateSynced() {
+    var time = new Date();
+    $("#synced").html("Last synced " + time)
+}
