@@ -2,7 +2,8 @@ body {
 	color: black;
 	font-family: Lato,'Helvetica Neue',serif;
 	font-weight:400;
-	background: gray;
+	background: white;
+	background-image:url('/static/retina_dust.png');
 }
 
 .sidebar_box {
@@ -55,9 +56,9 @@ body {
 }
 
 #content_space {
-	background-color:white;
+	background-image:url('/static/retina_dust.png');
 	padding-bottom:50px;
-	min-height:500px;
+	min-height:70vh;
 }
 
 #content_space img {
@@ -78,14 +79,14 @@ body {
 }
 
 #footer_space {
-	background:gray;
+	background-color:white;
 	height:50px;
 	text-align:center;
 }
 
 #footer_space > p {
 	padding-top:15px;
-	color:white;
+	color:black;
 }
 
 pre {
