@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding the Knight's Tour</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="/homepage.css" rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+	<script src="/googleTracking.js"></script>
+	<script src="/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/homepage.js"></script>
+</head>
+  <body>
+  	<div id="cover_image">
+  		<img src="/static/StinsonBanner.JPG" alt="I took this photo with some friends at Stinson Beach during a meteor shower. Shame you can't see it!" width="100%">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Coding the Knight's Tour</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="/">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="/">About</a></li>
+	  						<li><a href="/resume">R&eacute;sum&eacute;</a></li>
+	  						<li><a href="/projects">Projects</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<div class="container-fluid">
+	      <div class="row">
+	        <div class="col-md-4 col-md-offset-4">
+				<h2 id="introduction">Introduction</h2>
+
+<p>The Knight’s Tour Problem is a lot of fun, and there are some fantastic big-picture ideas that come into play. This article mostly goes into the “meat” of the problems rather than other elements like the visualisation.</p>
+
+<p>If you’d like to see the my full implementations in either Python (visualised in the terminal) or JavaScript/HTML/CSS, I’ve linked the completed projects below.</p>
+
+<ul>
+  <li>
+    <p><a href="/static/knightour.py">Python implementation</a>: This should be fairly simple to understand because the visualisation is simply rows of print statements. The solution in this file uses Warnsdorff’s Rule with the brute-force approach as backup.</p>
+  </li>
+  <li>
+    <p><a href="/knightour/">Web (JavaScript) implementation</a>: The solution in this version is simple because it depends completely on Warnsdorff’s rule. If you want to understand the visualisation I recommend using the debugging console on your browser (on Chrome you can access it by clicking “inspect element”) because you’re dealing with dependencies between HTML, CSS, website-wide style rules, and website-wide JavaScript rules.</p>
+  </li>
+</ul>
+
+<h2 id="what-is-the-knights-tour">What is the Knight’s Tour?</h2>
+
+<p>Imagine that you have a chess board and exactly one knight on that chess board. As in normal chess, the knight can move in an “L” shape in any direction. </p>
+
+<p><img src="/static/knights-tour-animation.gif" height="220" />
+<em>By Hsilgneymerej (Own work) [Public domain], via Wikimedia Commons</em></p>
+
+<p>Your challenge is to move the knight around the board in such a way that it lands on each square exactly once. It’s a tough challenge because there are so many combinations of moves, but given enough time most people can figure out a 5x5 board by trial and error.</p>
+
+<h2 id="two-solutions">Two Solutions</h2>
+
+<p>Computers, of course, are perfect for a job like this: if you give them the right instructions. </p>
+
+<h3 id="brute-force">Brute Force</h3>
+
+<p>Any programmer who is familiar with recursion will tell you right away that you can use a <a href="http://en.wikipedia.org/wiki/Pathfinding">pathfinding algorithm</a>. Conceptually this one is simple: the code evaluates every possible combination of moves, and returns a solution when it hits a correct one.</p>
+
+<p>Here is a simplified version of how I did it in Python.</p>
+
+<p>The board is represented by a list of lists and the output of this function is a board where each cell is numbered in order of visits by the knight.</p>
+
+<pre>
+def find_tour(board,coordinates,n):
+	row,col = coordinates[0],coordinates[1]
+	board[row][col] = move_count
+	if finished_check(board):
+		return board
+	else:
+		for move in valid_moves(coordinates,board):
+			try: return find_tour(board,move,move_count+1)
+			except: pass
+		raise Error("No valid tours.")
+</pre>
+
+<p>Within that for-loop, you can see that <code>find_tour</code> gets called up to eight times (the number of valid moves for a knight on a chess board). Each of those calls represents a possible move, and from each of those new positions, there could be up to another eight moves.</p>
+
+<p>As you can probably tell, the brute-force approach works, but it’s inefficient. It takes O(2^n) time, growing exponentially as the board increases in size. So how can we find a solution that’s faster?</p>
+
+<h3 id="warnsdorffs-rule">Warnsdorff’s Rule</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Knight's_tour#Warnsdorff.27s_rule">Warnsdorff’s Rule</a> is a <a href="http://en.wikipedia.org/wiki/Heuristic">heuristic</a>, or a rule of thumb for finding a solution. In short, Warnsdorff’s Rule is as follows:</p>
+
+<blockquote>If there are multiple possible moves for the knight, move to the position from which you will have the fewest moves.</blockquote>
+
+<p>This heuristic actually works so reliably that when I <a href="/knightour/">rewrote the code in JavaScript for the web</a>, I didn’t even include the brute force method as backup!</p>
+
+<p>What about efficiency? Because Warnsdorff’s Rule tells you best path at each step, you’re essentially following a linear path that never diverges. That’s O(n) time! Linear time is so quick that you can usually find a knight’s tour on a 100x100 board without your browser freezing.</p>
+
+<p>Here is my JavaScript implementation.</p>
+
+<pre>
+function knightour(position,col,row,coordinateList) {
+	coordinateList.push([col,row]);
+	position[col][row] = "visited";
+	var nextMove = findNextMove(position,col,row);
+	if (nextMove) {
+		return knightour(position,nextMove[0],nextMove[1],coordinateList);
+	}
+	else {
+		return coordinateList;
+	}
+}
+</pre>
+
+<p>In this one, findNextMove abstracts away the tedious process of counting the number of moves from each move. Note that, while this snippet of code is also recursive, it doesn’t branch off at any point. I could just as easily have used a for loop. </p>
+
+<p>The function outputs a list of coordinates on the chess board. The reason why I had it output coordinates was to make the html/css visualisation easier to achieve, since I have each cell of the html board identified by its coordinates. </p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>I hope my explanation of the Knight’s Tour helps you to complete this very fun challenge. I’ve left out the explanation of the HTML/CSS/JavaScript integration because a large portion of that was fiddly and boring stuff like the error message if you enter 30 seconds in the “animation speed” box.</p>
+
+<p>Feel free to contact me if I’ve made any errors, or if you’d like me to explain anything in more detail!</p>
+
+	        </div>
+	        <div class="col-md-4 ">
+	        	<div class="sidebar_box">
+	<a href="/"><h2>Blog</h2></a>
+	  
+	    <a href="/Coding-Knightour.html">Coding the Knight's Tour</a><br>
+	  
+	    <a href="/Connect-Four-Tutorial.html">How I Made Connect Four</a><br>
+	  
+</div>
+			</div>
+	      </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi. Have you tried beating my <a href="/connectfour/">Connect Four Minimax AI</a> yet?</p></div>
+</body>
+</html>

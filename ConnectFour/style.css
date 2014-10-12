@@ -1,0 +1,67 @@
+body {
+	background:white;
+	font-family:Lato,'Helvetica Neue',Helvetica;
+	color:black;
+}
+
+#cover_space {
+	background-color:#428bca;
+}
+
+#start {
+	padding-top:15px;
+}
+
+.alert {
+	padding:15px;
+	text-align:center;
+}
+/*
+#message {
+	padding:55px;
+	color:white;
+	text-align:center;
+}*/
+
+#theBoard {
+	width:100%;
+	min-height:100%;
+}
+
+/*#board_space {
+	padding:15px;
+	margin:15px;
+	margin-bottom:50px;
+	background:#3071a9;
+	color:white;
+	border-radius:5px;
+}*/
+
+#connectBoard {
+	text-align:center;
+	width:100%;
+	min-height:100%;
+	background:#3071a9;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+	td {
+		border-radius:50%;
+		padding:0px;
+	}
+
+	#connectBoard button {
+		width:75%;
+		height:75%;
+	}
+		.empty {
+			background:#428bca;
+		}
+
+		.x {
+			background:white;
+		}
+
+		.o {
+			background:black;
+		}
