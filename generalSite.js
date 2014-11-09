@@ -1,3 +1,5 @@
+// ---------------------FUNCTION DEFINITIONS--------------------------- //
+
 function checkWidth() {
 	// This makes sure the title text doesn't look weird on resize
 	var titleLength = $('#title').text().length;
@@ -29,6 +31,7 @@ function resizeBoard() {
 	$('#knightourBoard td').height($('#theBoard').width()/boardSize);
 }
 
+// ---------------------FUNCTION CALLS--------------------------- //
 
 $(document).ready(function() {
 	// This fills the gap left when the navbar becomes "sticky"
@@ -49,3 +52,13 @@ $(document).ready(function () {
 })
 
 $(window).resize(resizeBoard);
+
+
+
+
+
+
+
+
+
+
