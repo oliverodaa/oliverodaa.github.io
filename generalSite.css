@@ -52,6 +52,7 @@ body {
 }
 
 #content_space {
+	display:inline-block;
 	background-color:white;
 	padding-bottom:50px;
 	min-height:70vh;
