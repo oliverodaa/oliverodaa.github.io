@@ -7,10 +7,13 @@
 $(document).ready(function() {
 	$('.resume').hide();
 	$('.projects').hide();
+	$('#content_space').height = $('.about').height(); 
 })
 var currentPage = 1;
 
 function showAbout() {
+	$('#content_space').height = $('.resume').height(); 
+
 	if (currentPage > 1) {
 		var hideDir = 'right';
 		var showDir = 'left';
@@ -49,6 +52,8 @@ function showResume() {
 };
 
 function showProjects() {
+	$('#content_space').height = $('.projects').height(); 
+
 	if (currentPage > 3) {
 		var hideDir = 'right';
 		var showDir = 'left';
