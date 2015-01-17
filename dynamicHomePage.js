@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$('.projects').hide();
 	$('#content_space').height = $('.about').height(); 
 })
-var currentPage = 1;
+var currentPage = 2;
 
 function showAbout() {
 	$('#content_space').height = $('.resume').height(); 
