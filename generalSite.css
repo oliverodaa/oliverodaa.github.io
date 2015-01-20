@@ -91,6 +91,10 @@ body {
 	color:black;
 }
 
+#twitter-widget-0 { 
+    width: 100% !important; 
+}
+
 pre {
   overflow: auto;
   word-wrap: normal;

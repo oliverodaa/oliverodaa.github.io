@@ -5,9 +5,9 @@
 // 5. Change Title
 
 $(document).ready(function() {
-	$('.about').hide();
+	$('.resume').hide();
 	$('.projects').hide();
-	$('#content_space').height = $('.resume').height(); 
+	$('#content_space').height = $('.about').height(); 
 })
 var currentPage = 2;
 
