@@ -23,9 +23,9 @@ function showAbout() {
 	}
 	currentPage = 1;
 
-	$('.resume').hide("slide",{direction: hideDir},800);
-	$('.projects').hide("slide",{direction: hideDir},800);
-	$('.about').show("slide",{direction: showDir},800);
+	$('.resume').hide("slide",{direction: hideDir},400);
+	$('.projects').hide("slide",{direction: hideDir},400);
+	$('.about').show("slide",{direction: showDir},400);
 
 	$('#Resume').removeClass("active");
 	$('#Projects').removeClass("active");
