@@ -95,6 +95,15 @@ body {
     width: 100% !important; 
 }
 
+#resume_img_and_link {
+	text-align:center;
+}
+
+#resume_img_and_link img {
+	width:100%;
+	max-width:700px;
+}
+
 pre {
   overflow: auto;
   word-wrap: normal;

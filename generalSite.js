@@ -25,9 +25,13 @@ function resizeBoard() {
 		$('#boardBox').css({"padding-left":paddingWidth.toString()+"px"});
 		$('#boardBox').css({"padding-right":paddingWidth.toString()+"px"});
 	}
+	var boardSize = $('#theBoard').width();
 	$('#theBoard').height($('#theBoard').width());
 	$('#connectBoard td').height($('#theBoard').width()/7);
-	// console.log("boardSize is " + boardSize);
+	if (boardSize == undefined) {
+		var boardSize = 1;
+	}
+	// boardSize is defined in knightour.js
 	$('#knightourBoard td').height($('#theBoard').width()/boardSize);
 }
 
