@@ -1,7 +1,6 @@
 body {
 	font-family:Lato,'Helvetica Neue',serif;
 	font-weight:400;
-	background: gray;
 }
 
 #cover_image_div {
@@ -49,10 +48,6 @@ body {
 
 #icons {
 	font-size:2.5em;
-}
-
-.container-fluid {
-	background:white;
 }
 
 #content_space {
