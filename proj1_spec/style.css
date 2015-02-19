@@ -1,0 +1,62 @@
+body {
+    font-family:Lato,'Helvetica Neue',serif;
+    font-weight:400;
+    background: gray;
+}
+
+table {
+    min-width:50%;
+    margin:auto;
+    padding:20px;
+}
+
+.rgtr {
+    color:rgba(41, 128, 185,1);
+}
+
+.immd {
+    color:rgba(192, 57, 43,1.0);
+}
+
+.label {
+    color:rgba(22, 160, 133,1.0);
+}
+
+.container-fluid {
+    background:white;
+}
+
+#content_space {
+    background-color:white;
+    padding-bottom:50px;
+    min-height:70vh;
+    box-shadow:0px 0px 100px 0px;
+}
+
+#content_space img {
+    display:block;
+    width:80%;
+    box-shadow:0px 0px 50px 0px;
+    margin-top:50px;
+    margin-bottom:50px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#nav {
+    background:white;
+    z-index:10;
+}
+
+#nav.affix {
+    position:fixed;
+    top:0px;
+    width:100%;
+    box-shadow:0px 0px 100px 0px;
+}
+
+pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}

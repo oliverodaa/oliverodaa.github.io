@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ollie O'Donnell</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="style.css" rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+	<script src="../googleTracking.js"></script>
+	<script src="../jquery.min.js"></script>
+	<script src="../jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+
+<!--////////////////////////// Facebook JS /////////////////////////-->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1535854626680069&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--////////////////////////// Header /////////////////////////-->
+
+  <body>
+  	<div id="content_space">
+  	    <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="#">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li class="active"><a href="http://ollie-odonnell.com/proj1_spec">Setup and Introduction</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/1">Step 1</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/2">Step 2</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/3">Step 3</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/4">Step 4</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/5">Step 5</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/6">Step 6</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<!--////////////////////////// Content /////////////////////////-->
+
+<div class="container-fluid resume">
+  <div class="row">
+	<div class="col-md-8 col-md-offset-2">
+	<div class="header">
+	<h1>CS61C Spring 2015 Project 1-1: MIPS Assembler</h1>
+	TA: Jeffrey Dong
+</div>
+
+<div class="content">
+	<p><b>Due Sunday, March 1, 2015 @ 11:59pm</b></p>
+
+  <div class="highlight">
+		<h3>IMPORTANT INFO - PLEASE READ</h3>
+
+		<p>This project is due on March 1st, and project 1-2 is due on March 5th. Plenty of time, right? Well, <b>you have three weeks for a project with two parts, a midterm, and a (written) homework. So you do not have a lot of time.</b></p>
+
+		<p>The project (in total) is worth 5% of your grade, whereas midterm 1 is worth 15%, so definitely devote enough time for the midterm. However, doing this project (especially part 2, since we have not done much MIPS coding yet) may help you on the exam, so it is in your interest to work on the project as well. We decided to push the due date of this project back so that you can divide your time more flexibly. Do not procrastinate.</p>
+	</div>
+
+	<h2>So What Is This About?</h2>
+	
+	<p>In this part of the project, we will be writing an assembler that translates a subset of the MIPS instruction set to machine code. Our assembler is a two-pass assembler similar to the one described in lecture. However, we will only assemble the <tt>.text</tt> segment. At a high level, the functionality of our assembler can be divided as follows:</p>
+
+	<p>Pass 1: Reads the input (<tt>.s</tt>) file. Comments are stripped, pseudoinstructions are expanded, and the address of each label is recorded into the symbol table. Input validation of the labels and pseudoinstructions is performed here. The output is written to an intermediate (<tt>.int</tt>) file .</p>
+
+	<p>Pass 2: Reads the intermediate file and translates each instruction to machine code. Instruction syntax and arguments are validated at this step. The relocation table is generated, and the instructions, symbol table, and relocation table are written to an object (<tt>.out</tt>) file.</p>
+
+	<h2>The Instruction Set</h2>
+
+	<p>Please consult the <a href="http://www-inst.eecs.berkeley.edu/~cs61c/resources/MIPS_Green_Sheet.pdf">MIPS Green Sheet</a> for register numbers, instruction opcodes, and bitwise formats. Our asembler will support the following registers: <b>$zero</b>, <b>$at</b>, <b>$v0</b>, <b>$a0 - $a3</b>, <b>$t0 - $t3</b>, <b>$s0 - $s3</b>, <b>$sp</b>, and <b>$ra</b>. The name <b>$0</b> can be used in lieu of $zero. Other register numbers (eg. $1, $2, etc.) are not supported.</p>
+
+	<p>We will have 18 instructions and 2 pseudoinstructions to assemble. The instructions are:</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Instruction</td>
+      <td>Format</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	<td>Add Unsigned</td>
+      <td><span class="inst">addu</span> <span class="rgtr">$rd</span>, <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span></td>
+    </tr>
+    <tr>
+    	<td>Or</td>
+      <td><span class="inst">or</span> <span class="rgtr">$rd</span>, <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span></td>
+    </tr>
+    <tr>
+    	<td>Set Less Than</td>
+      <td><span class="inst">slt</span> <span class="rgtr">$rd</span>, <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span></td>
+    </tr>
+    <tr>
+    	<td>Set Less Than Unsigned</td>
+      <td><span class="inst">sltu</span> <span class="rgtr">$rd</span>, <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span></td>
+    </tr>
+    <tr>
+    	<td>Jump Register</td>
+      <td><span class="inst">jr</span> <span class="rgtr">$rs</span></td>
+    </tr>
+    <tr>
+    	<td>Shift Left Logical</td>
+      <td><span class="inst">sll</span> <span class="rgtr">$rd</span>, <span class="rgtr">$rt</span>, <span class="immd">shamt</span></td>
+    </tr>
+    <tr>
+    	<td>Add Immediate Unsigned</td>
+      <td><span class="inst">addiu</span> <span class="rgtr">$rt</span>, <span class="rgtr">$rs</span>, <span class="immd">immediate</span></td>
+    </tr>
+    <tr>
+    	<td>Or Immediate</td>
+      <td><span class="inst">ori</span> <span class="rgtr">$rt</span>, <span class="rgtr">$rs</span>, <span class="immd">immediate</span></td>
+    </tr>
+    <tr>
+    	<td>Load Upper Immediate</td>
+      <td><span class="inst">lui</span> <span class="rgtr">$rt</span>, <span class="immd">immediate</span></td>
+    </tr>
+    <tr>
+    	<td>Load Byte</td>
+      <td><span class="inst">lb</span> <span class="rgtr">$rt</span>, <span class="immd">offset</span>(<span class="rgtr">$rs</span>)</td>
+    </tr>
+    <tr>
+    	<td>Load Byte Unsigned</td>
+      <td><span class="inst">lbu</span> <span class="rgtr">$rt</span>, <span class="immd">offset</span>(<span class="rgtr">$rs</span>)</td>
+    </tr>
+    <tr>
+    	<td>Load Word</td>
+      <td><span class="inst">lw</span> <span class="rgtr">$rt</span>, <span class="immd">offset</span>(<span class="rgtr">$rs</span>)</td>
+    </tr>
+    <tr>
+    	<td>Store Byte</td>
+      <td><span class="inst">sb</span> <span class="rgtr">$rt</span>, <span class="immd">offset</span>(<span class="rgtr">$rs</span>)</td>
+    </tr>
+    <tr>
+    	<td>Store Word</td>
+      <td><span class="inst">sw</span> <span class="rgtr">$rt</span>, <span class="immd">offset</span>(<span class="rgtr">$rs</span>)</td>
+    </tr>
+    <tr>
+    	<td>Branch on Equal</td>
+      <td><span class="inst">beq</span> <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span>, <span class="label">label</span></td>
+    </tr>
+    <tr>
+    	<td>Branch on Not Equal</td>
+      <td><span class="inst">bne</span> <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span>, <span class="label">label</span></td>
+    </tr>
+    <tr>
+    	<td>Jump</td>
+      <td><span class="inst">j</span> <span class="label">label</span></td>
+    </tr>
+    <tr>
+    	<td>Jump and Link</td>
+      <td><span class="inst">jal</span> <span class="label">label</span></td>
+    </tr>
+  </tbody>
+</table>
+
+	<p>The pseudoinstructions are:</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Pseudoinstruction</td>
+      <td>Format</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	<td>Load Immediate</td>
+      <td><span class="inst">li</span> <span class="rgtr">$rt</span>, <span class="immd">immediate</span></td>
+    </tr>
+    <tr>
+    	<td>Branch on Less Than</td>
+      <td><span class="inst">blt</span> <span class="rgtr">$rs</span>, <span class="rgtr">$rt</span>, <span class="label">label</span></td>
+    </tr>
+  </tbody>
+</table>
+	
+	<h2>Implementation Steps</h2>
+
+	<p><b>Please note that your project will be graded on the HIVE machines.</b> While you are free to develop on other machines, you need to make sure that your code compiles and runs without errors on the hive machines before submitting. If you do not, you run the risk of turning in non-compiling code and <span class="warn">getting a ZERO on the entire project</span>.</p>
+
+	<h3>Step 0: Obtaining the Files</h3>
+
+	
+  <p>To make this process go as smoothly as possible, make sure you:</p>
+
+  <b>
+		<ol>
+			<li>Use the shared proj1-XX-YY repositories for this project, NOT your individual repositories.</li>
+			<li>Create your shared git repository outside of any existing repositories (unless you <i>really</i> know what you're doing).</li>
+		</ol>
+	</b>
+
+	<p>If your shared repository is empty, you can use the GitHub importer by going to the repository's page (<tt>https://github.com/cs61c-spring2015/cs61c-XX-YY</tt>), scrolling to the bottom, and clicking the import button:</p>
+
+	<img src="import.png"/>
+
+	<p>Click on "Import Code", and on the next screen enter the URL of the starter repository (<tt>https://github.com/cs61c-spring2015/proj1_starter</tt>):</p>
+
+	<img src="import2.png"/> 
+
+	<p>It will take GitHub a few moments to import the code. After it is done, your repository should have the same files as the starter repository:</p>
+
+	<img src="import3.png"/> 
+
+	<p>Now you can clone the repository to your cs61c account/your computer, and then add the starter repository as a remote:</p>
+
+	<pre>
+cd ~                            # Make sure you are outside of any existing repositories (eg. ~/work)
+git clone git@github.com:cs61c-spring2015/proj1-XX-YY.git
+cd proj1-XX-YY                  # Go inside the directory that was created
+git remote add proj1_starter git@github.com:cs61c-spring2015/proj1_starter</pre>
+
+	<p>If you have already made commits to your shared repository, then simply add the </p>
+
+	<pre>
+# Inside of your proj1-XX-YY repository
+git remote add proj1_starter git@github.com:cs61c-spring2015/proj1_starter
+git fetch proj1_starter
+git merge proj1_starter/master -m "merge proj1-1 skeleton code"</pre>
+
+	<p>You can compile you code by typing <tt>make</tt>. At first, you will get a bunch of <tt>-Wunused-variable</tt> and <tt>-Wunused-function</tt> warnings. The warnings tell you that variables/functions were declared, but were not used in your code. Don't worry, as you complete the assigment the warnings will go away.</p>
+	</div>
+  </div>
+  <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="5" data-colorscheme="light"></div>
+</div>
+
+
+
+	</div>
+</body>
+</html>
