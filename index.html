@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 	<link href="generalSite.css" rel="stylesheet">
 	<link href="dynamicHomePage.css" rel="stylesheet">
 	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
@@ -119,55 +119,115 @@
 
 <div class="container-fluid projects">
   <div class="row">
-	<div class="col-md-4">
-		<h2><i class="fa fa-life-ring"></i> Connect Four Minimax AI</h2>
-		<p>I wanted to revisit the Connect Four AI and interactive game I had created in Snap! for my first CS class at Berkeley, CS10.
-		I worked hard to learn about minimax AI and to subsequently implement what I had learned in a Python 3 terminal-based game. 
-		I learned JavaScript in order to rewrite the project for a client-side browser interface. Try to win against my AI!
-		</p>
-
-		<a href="../ConnectFour" class="btn btn-primary">Play Connect Four Now!</a>
+	<div class="col-md-8">
+		<div class="proj-box">
+			<div class="proj-header packd-header">
+					<h2><i class="fa fa-desktop"></i> PACKD</h2><h3> (4th Place in STC Mobile App Competition)</h3>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Sophomore Year (Spring 2014)</p>
+				<p><strong>Tech:</strong> Back-end is Google App Engine, written in Python 2, and Java, while the database is hosted on Firebase. Front-end is Bootstrap, Javascript, Jquery, Graph.js, and of course HTML and CSS.</p>
+				<p><strong>Teammate:</strong> <a href="http://nicksrose.com/">Nick Rose</a></p>
+				<p>The app tells students and other members of the community how busy the RSF is before they go. It also provides the user with a predictive graph built from 3 years of past data from Rec Sports. We hope to save many collective hours of frustration caused by having to wait for machines, and maximize usage of a fantastic facility that works to improve physical and mental wellbeing on our campus.</p>
+				<img src="static/proj-packd.jpg"> 
+  				<a href="http://packd.org/" class="btn btn-primary center-block">Try it out!</a>
+		  	</div>
+	  	</div>
 	</div>
 	<div class="col-md-4">
-		<h2><i class="fa fa-university"></i> SAO Website Redesign</h2>
-  		<p>In the Spring of 2014 I was approached with an opportunity to replace the ASUC Student Advocate's Office website. As a caseworker at the SAO I'm extremely passionate about our mission to support students in their disputes within UC Berkeley.</p>
-  		<p> The information and support we provide is vital to the lives of students. Since the website's completion we have had over 4000 unique visits.</p>
-  		<a href="http://advocate.berkeley.edu/" class="btn btn-primary">Explore the Site!</a>
+		<div class="proj-box">
+			<div class="proj-header evernote-header">
+					<h2><i class="fa fa-desktop"></i> Annot8</h2><h3> (Winner of Evernote Hackathon Design Prize)</h3>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Sophomore Year (Fall 2014)</p>
+				<p><strong>Tech:</strong> Web implementation of Evernote API, using Bootstrap and supporting APIs such as SoundCloud.</p>
+				<p><strong>Teammates:</strong> <a href="http://tararezvani.me/">Tara Rezvani</a>, <a href="https://www.linkedin.com/pub/edwan-hernandez/a2/631/7a1">Edwan Hernandez</a>, and <a href"https://www.linkedin.com/in/rongchanglei">Rongchang Lei.</a></p>
+				<p>Winning our first ever hackathon (28 teams competed!), we wrote an app to allow audio-synced notes on the Evernote platform. As the user takes notes during a lecture, presentation, or film, each time he or she presses enter, a timestamp with the specific minute of the recording is conveniently inserted just before the text. When the user reviews the notes, he or she can quickly access the corresponding moment in the recording.</p>
+				<img src="static/proj-evernote.jpg"> 
+  				<a href="/Evernote" class="btn btn-primary center-block">Try it out!</a>
+		  	</div>
+	  	</div>
+	</div>
+   </div>
+  <div class="row">
+	<div class="col-md-4">
+		<div class="proj-box">
+			<div class="proj-header">
+				<h2><i class="fa fa-life-ring"></i> Connect Four Minimax AI</h2>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Freshman Year (Summer 2014)</p>
+				<p><strong>Tech:</strong> Straight JavaScript, with HTML and CSS for the UI.</p>
+				<p>In my first CS class at Berkeley, CS10, I worked hard to learn about minimax AI and to subsequently implement what I had learned in a Python 3 terminal-based game. 
+				I learned JavaScript in order to rewrite the project for a client-side browser interface. Try to win against my AI!
+				</p>
+				<img src="static/connectfour.png">
+				<a href="../ConnectFour" class="btn btn-primary center-block">Play Connect Four Now!</a>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-4">
-		<h2><span class="glyphicon glyphicon-tower"></span> The Knight's Tour</h2>
-  		<p>I wrote a solution to the <a href="http://en.wikipedia.org/wiki/Knight's_tour">Knight's Tour Problem</a> for Python 3.3.4. It's super fast compared to the brute force version and it was a lot of fun to write. I've now ported it over to JavaScript for your enjoyment!</p>
-  		<a href="../Knightour"  class="btn btn-primary">Try the Interactive Solution!</a>
-  		<br><br>
+		<div class="proj-box">
+			<div class="proj-header">
+				<h2><i class="fa fa-university"></i> SAO Website Redesign</h2>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Freshman Year (Spring 2014)</p>
+				<p><strong>Tech:</strong> Full stack implementation, using remote mySQL for database.</p>
+	  			<p>As a caseworker at the SAO, it is my job to support students in their disputes within UC Berkeley and to instigate policy changes. The information and support we provide is vital to the lives of students. Since the website's completion we have had over 4000 unique visits.</p>
+	  			<img src="static/proj-sao.png">
+	  			<a href="http://advocate.berkeley.edu/" class="btn btn-primary center-block">Explore the Site!</a>
+	  		</div>
+	  	</div>
+	</div>
+	<div class="col-md-4">
+		<div class="proj-box">
+			<div class="proj-header">
+				<h2><span class="glyphicon glyphicon-tower"></span> The Knight's Tour</h2>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Freshman Year (Spring 2014)</p>
+				<p><strong>Tech:</strong> Originally written in Python 3.3.4, then ported to JavaScript with UI in straight HTML and CSS.</p>
+		  		<p>I wrote a solution to the <a href="http://en.wikipedia.org/wiki/Knight's_tour">Knight's Tour Problem</a> for Python 3.3.4. While the naive solution is recursive, this code is O(N). It's super fast compared to the brute force version and it was a lot of fun to write. I've now ported it over to JavaScript for your enjoyment!</p>
+		  		<video width="100%" src="static/SnarlingFeistyErin.webm" autoplay>
+		  			Unfortunately the video will only show on Chrome, Firefox, or Opera. Don't worry, you're not missing out on too much. Just go to the site itself!
+		  		</video>
+		  		<a href="../Knightour"  class="btn btn-primary center-block">Try the Interactive Solution!</a>
+		  	</div>
+		</div>
   	</div>
   </div>
   <div class="row">
 	<div class="col-md-4">
-		<h2><i class="fa fa-music"></i> UCMC Website Redesign</h2>
-  		<p>After becoming a co-manager of the UC Men's Chorale in Fall 2014, I saw a need to update the website. As my very first choir conductor always said, "People hear with their eyes as much as their ears". If that's true then people had been hearing something that was ugly, outdated and not very user-friendly.</p>
-  		<p> More importantly, the old site <a href="http://ucmc.berkeley.edu/old">(click here to see it!)</a> was written in straight html, and was therefore tedious to update. This site is built in Wordpress and, through use of a MySQL database, can be edited within the browser, no coding ability required!</p>
-  		<a href="http://ucmc.berkeley.edu/" class="btn btn-primary">Expore the site!</a>
-  		<br>
-  		<br>
+		<div class="proj-box">
+			<div class="proj-header">
+				<h2><i class="fa fa-music"></i> UCMC Website Redesign</h2>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Sophomore Year (Fall 2014)</p>
+				<p><strong>Tech:</strong> Wordpress implementation on Open Computing Facility server space.</p>
+		  		<p>After becoming the manager of the UC Men's Chorale, I saw a need to update the website. The old site <a href="http://ucmc.berkeley.edu/old">(click here to see it!)</a> was written in straight html, and was therefore tedious to update. The Wordpress site structure will help future generations (who may not have web experience) to keep the information up-to-date. </p>
+	  			<img src="static/proj-ucmc.jpg">
+		  		<a href="http://ucmc.berkeley.edu/" class="btn btn-primary center-block">Expore the site!</a>
+		  	</div>
+	  	</div>
 	</div>
 	<div class="col-md-4">
-		<h2><i class="fa fa-users"></i> UC Chorale Ensembles Website Implementation</h2>
-  		<p>In Fall 2014, I was tasked with not only a website redesign, but also the transfer of an entire organisation to a new (much better) interface for updating website content. The site needed to be easy to edit for managers of chorale groups, and also attractive and user-friendly. The site is a vital channel for donations to UCCE.</p>
-  		<p>UC Chorale Ensembles is the parent company of the UC Men's Chorale and has more than thirty managers and directors with various and often conflicting personal interests. Despite these challenges, the resulting website is both beautiful and functional, making life better for UCCE and its audience.</p>
-  		<a href="http://ucce.berkeley.edu/newsite" class="btn btn-primary">Explore the site!</a>
-  		<br>
-  		<br>
-	</div>
-	<div class="col-md-4">
-		<h2><i class="fa fa-desktop"></i> Evernote Hackathon Design Prize</h2>
-  		<p>During our first ever hackathon, Tara Rezvani, Edwan Hernandez, Rongchang Lei and I wanted to add functionality to the Evernote platform that we would want to use ourselves.</p>
-  		<p>Annot8 is an app built for those who need to take notes along to a lecture, interview, performance, or any other time-sensitive event. The functionality is simple: as you take your notes, each time you press enter, a timestamp with the specific minute of the recording is conveniently inserted just before your text. That way, when you review your notes, you can quickly access the moment in the recording to which your notes correspond.</p>
-  		<a href="/Evernote" class="btn btn-primary">Try it out!</a>
-  		<br>
-  		<br>
+		<div class="proj-box">
+			<div class="proj-header">
+				<h2><i class="fa fa-users"></i> UC Choral Ensembles Website Implementation</h2>
+			</div>
+			<div class="proj-content">
+				<p><strong>Completed:</strong> Sophomore Year (Fall 2014)</p>
+				<p><strong>Tech:</strong> Wordpress implementation on Open Computing Facility server space.</p>
+		  		<p>UC Choral Ensembles is by far the largest collection of a cappella groups on campus and has more than thirty managers and directors with various and often conflicting personal interests. For many, the website is their first impression of a cappella at Berkeley. The site needed to be easy to edit for managers of choral groups, and also attractive and user-friendly.</p>
+		  	    <img src="static/proj-ucce.png">
+		  		<a href="http://ucce.berkeley.edu/newsite" class="btn btn-primary center-block">Explore the site!</a>
+		  	</div>
+	  	</div>
 	</div>
   </div>
-</div>
 
 <!--///////////////////////////////////////////////////-->
 
