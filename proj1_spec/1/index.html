@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS61c Proj1_Spec</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="style.css" rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+	<script src="../../googleTracking.js"></script>
+	<script src="../../jquery.min.js"></script>
+	<script src="../../jquery-ui.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+</head>
+
+<!--////////////////////////// Facebook JS /////////////////////////-->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1535854626680069&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--////////////////////////// Header /////////////////////////-->
+
+  <body>
+  	<div id="content_space">
+  	    <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="#">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li class="active"><a href="http://ollie-odonnell.com/proj1_spec">Setup and Introduction</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/1">Step 1</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/2">Step 2</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/3">Step 3</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/4">Step 4</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/5">Step 5</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/6">Step 6</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+
+<div class="container-fluid resume">
+  <div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+<!--////////////////////////// Content /////////////////////////-->
+
+  <h3>Step 1: Building Blocks</h3>
+
+  <p>Finish the implementation of <tt>translate_reg()</tt> and <tt>translate_num()</tt> in <tt>src/translation_utils.c</tt>. <tt>translate_reg()</tt> is incomplete, so you need to fill in the rest of the register translations. You can find register numbers on the <a href="http://www-inst.eecs.berkeley.edu/~cs61c/resources/MIPS_Green_Sheet.pdf">MIPS Green Sheet</a>. Unfortunately, there are no built-in <tt>switch</tt> statements for strings in C, so an if-else ladder is the way to compare multiple strings.</p>
+
+  <p>For <tt>translate_num()</tt>, you should use the library function <tt>strtol()</tt> (see <a href="http://www.cplusplus.com/reference/cstdlib/strtol/">documentation here</a>). <tt>translate_num()</tt> should translate a numerical string (either decimal or hexadecimal) into a signed number, and then check to make sure that the result is within the bounds specified. If the string is invalid or outside of the bounds, return -1.</p>
+
+    <div class="fb-comments" data-href="http://ollie-odonnell.com/proj1_spec/1" data-numposts="5" data-colorscheme="light"></div>
+
+<!--////////////////////////// Content /////////////////////////-->
+
+	</div>
+ </div>
+</div>
+</body>
+</html>
