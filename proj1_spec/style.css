@@ -10,6 +10,13 @@ table {
     padding:20px;
 }
 
+.fb-comments {
+    width:100%;
+    margin:auto;
+}
+
+/*///////////  TABLE STUFF ///////////// */
+
 .rgtr {
     color:rgba(41, 128, 185,1);
 }
@@ -21,6 +28,8 @@ table {
 .label {
     color:rgba(22, 160, 133,1.0);
 }
+
+/*/////////////////////////////////////*/
 
 .container-fluid {
     background:white;
