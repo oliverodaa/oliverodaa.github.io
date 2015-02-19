@@ -10,7 +10,7 @@ table {
     padding:20px;
 }
 
-.fb-comments {
+div.fb-comments {
     position:relative;
     width:100%;
     padding-top:150px;
