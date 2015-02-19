@@ -4,6 +4,13 @@ body {
     background: gray;
 }
 
+/*///////////  TABLE STUFF ///////////// */
+
+thead {
+    background-color:rgba(41, 128, 185,1);
+    color:white;
+}
+
 table {
     min-width:50%;
     margin:auto;
@@ -13,7 +20,9 @@ table {
     margin-bottom:50px;
 }
 
-/*///////////  TABLE STUFF ///////////// */
+td {
+    padding: 15px;
+}
 
 .rgtr {
     color:rgba(41, 128, 185,1);
