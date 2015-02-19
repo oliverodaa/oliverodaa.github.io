@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS61c Proj1_Spec</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+	<link href="style.css" rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+	<script src="../../googleTracking.js"></script>
+	<script src="../../jquery.min.js"></script>
+	<script src="../../jquery-ui.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+</head>
+
+<!--////////////////////////// Facebook JS /////////////////////////-->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1535854626680069&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--////////////////////////// Header /////////////////////////-->
+
+  <body>
+  	<div id="content_space">
+  	    <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="#">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec">Setup and Introduction</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/1">Step 1</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/2">Step 2</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/3">Step 3</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/4">Step 4</a></li>
+	  						<li class="active"><a href="http://ollie-odonnell.com/proj1_spec/5">Step 5</a></li>
+	  						<li><a href="http://ollie-odonnell.com/proj1_spec/6">Step 6</a></li>
+                <li><a href="http://ollie-odonnell.com/proj1_spec/Submission">Submission</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+
+<div class="container-fluid resume">
+  <div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+<!--////////////////////////// Content /////////////////////////-->
+
+<h3>Step 5: Putting It All Together</h3>
+
+  <p>Implement <tt>pass_one()</tt> and <tt>pass_two()</tt> in <tt>assembler.c</tt>. In the first pass, the assembler will strip comments, add labels to the symbol table, perform pseudoinstruction expansion, and write assembly code into an intermediate file. The second pass will read the intermediate file, translate the instructions into machine code using the symbol table, and write it to an output file. Afterwards, the symbol table and relocation table will be written to the output file as well, but that has been handled for you.<p>
+
+  <p><b>Before you begin, make sure you understand the documentation of <a href="http://www.cplusplus.com/reference/cstdio/fgets/">fgets()</a> and <a href="http://www.cplusplus.com/reference/cstring/strtok/">strtok()</a>.</b> It will be easier to implement <tt>pass_two()</tt> first. The comments in the function will give a more detailed outline of what to do, as well as what assumptions you may make. <b>Your program should not exit if a line contains an error.</b> Instead, keep track of whether any errors have occured, and if so, return -1 at the end. <tt>pass_one()</tt> should be structured similarly to <tt>pass_two()</tt>, except that you will also need to parse out comments and labels. You will find the <tt>skip_comment()</tt> and <tt>add_if_label()</tt> functions useful. </p>
+
+  <p>As an aside, our parser is much more lenient than an actual MIPS parser. Building a good parser is outside the scope of this course, but we encourage you to learn about finite state automata if you are interested.</p>
+
+  <h3 class="miniheader">Line Numbers and Byte Offsets</h3>
+
+  <p>When parsing, you will need to keep track of two numbers, the line number of the input file and the byte offset of the current instruction. Line numbers start at 1, and include whitespace. The byte offset refers to how far away the current instruction is from the first instruction, and does NOT include whitespace. You can think of the byte offset as where each instruction will be if the instructions were loaded into memory starting at address 0. See below for an example.</p>
+
+  <p>The address of a label is the byte offset of the next instruction. In the example below, <tt>L1</tt> has an address of 4 (since the next instruction is <tt>lw</tt>, whose address is 4) and <tt>L2</tt> has an address of 8 (since the next instruction is <tt>ori</tt>, whose address is 8).</p>
+
+<table class="colonly">
+  <thead>
+    <tr>
+      <td>Line #</td>
+      <td>Input File</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="center">1</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;addiu $t0 $a0 0</td>
+    </tr>
+    <tr>
+      <td class="center">2</td>
+      <td>L1: lw $t1 0($t0)</td>
+    </tr>
+    <tr>
+      <td class="center">3</td>
+      <td># This is a comment</td>
+    </tr>
+    <tr>
+      <td class="center">4</td>
+      <td>L2:</td>
+    </tr>
+    <tr>
+      <td class="center">5</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;ori $t1 $t1 0xABCD</td>
+    </tr>
+    <tr>
+      <td class="center">6</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;addiu $t1 $t1 3</td>
+    </tr>
+    <tr>
+      <td class="center">7</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="center">8</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;bne $t1 $a2 L2</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="display:inline-block;">
+<p></p>
+</div>
+
+<table class="colonly">
+  <thead>
+    <tr>
+      <td>Output File</td>
+      <td>Byte Offset</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>addiu $t0 $a0 0</td>
+      <td class="center">0</td>
+    </tr>
+    <tr>
+      <td>lw $t1 0($t0)</td>
+      <td class="center">4</td>
+    </tr>
+    <tr>
+      <td>ori $t1 $t1 0xABCD</td>
+      <td class="center">8</td>
+    </tr>
+    <tr>
+      <td>addiu $t1 $t1 3</td>
+      <td class="center">12</td>
+    </tr>
+    <tr>
+      <td>bne $t1 $a2 label_2</td>
+      <td class="center">16</td>
+    </tr>
+  </tbody>
+</table>
+
+    <div class="fb-comments" data-href="http://ollie-odonnell.com/proj1_spec/5" data-numposts="5" data-colorscheme="light"></div>
+
+<!--////////////////////////// Content /////////////////////////-->
+
+	</div>
+ </div>
+</div>
+</body>
+</html>
