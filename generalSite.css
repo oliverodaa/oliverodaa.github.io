@@ -121,7 +121,9 @@ pre {
 
 .proj-box {
 	max-width:600px;
-	margin: 10px auto;
+	margin: auto;
+	margin-top:10px;
+	margin-bottom:10px;
 	box-shadow:0px 0px 20px 0px;
 }
 
