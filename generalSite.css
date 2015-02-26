@@ -22,13 +22,20 @@ pre {
 	width:1920px;
 }
 
-#cover_image_div img {
-	left:-100%;
+#cover_image_div_404 {
+	position:fixed;
+	top:0px;
+	left:50%;
+	z-index:-10;
+	width:1920px;
 }
 
-#my404 {
+#cover_image_div_404 img {
 	width:100%;
+}
 
+#cover_image_div img {
+	left:-100%;
 }
 
 #title_container {
