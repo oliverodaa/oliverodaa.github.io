@@ -34,6 +34,7 @@ pre {
 	position:absolute;
 	left:-50%;
 	width:500px;
+	margin:auto;
 }
 
 #cover_image_div img {
