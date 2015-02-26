@@ -23,8 +23,12 @@ pre {
 }
 
 #cover_image_div img {
-	position:absolute;
-	left:-50%;
+	left:-100%;
+}
+
+#my404 img {
+	width:100%;
+
 }
 
 #title_container {
