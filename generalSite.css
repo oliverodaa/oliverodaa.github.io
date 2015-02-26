@@ -23,7 +23,7 @@ pre {
 }
 
 #cover_image_div img {
-	position:relative;
+	position:absolute;
 	left:-100%;
 }
 
