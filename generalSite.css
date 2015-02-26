@@ -31,6 +31,7 @@ pre {
 }
 
 #cover_image_div_404 img {
+	position:absolute;
 	left:-100%;
 	width:100%;
 }
