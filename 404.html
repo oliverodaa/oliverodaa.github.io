@@ -19,12 +19,34 @@
 
   <body>
   	 <div id="cover_image_div">
-  		<img src="/static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!" class="about">
+  		<img src="static/Resume.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!" class="resume">
+  		<img src="static/Projects.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!" class="projects">
   	</div>
   	<div id="cover_space">
-  		<div id="title_container" class="404">
+  		<div id="title_container" class="about">
 	  		<a href="http://www.ollie-odonnell.com">
-	  			<h1>404: Oswald Not Found</h1>
+	  			<h1>About</h1>
+	  		</a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  		<div id="title_container" class="resume">
+	  		<a href="http://www.ollie-odonnell.com">
+	  			<h1>R&eacute;sum&eacute</h1>
+	  		</a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div> 
+  		<div id="title_container" class="projects">
+	  		<a href="http://www.ollie-odonnell.com">
+	  			<h1>Projects</h1>
 	  		</a>
 	  		<div id="icons">
 		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
@@ -44,11 +66,13 @@
 	  						<span class="icon-bar"></span>
 	  						<span class="icon-bar"></span>
 	  					</button>
-	  					<a class="navbar-brand" href="http://ollie-odonnell.com/">Ollie O'Donnell</a>
+	  					<a class="navbar-brand" href="#">Ollie O'Donnell</a>
 	  				</div>
 	  				<div class="collapse navbar-collapse">
 	  					<ul class="nav navbar-nav">
-	  						<li><a href="http://ollie-odonnell.com/">Back to ollie-odonnell.com</a></li>
+	  						<li id="About" class="active"><a href="#" onclick="showAbout()">About</a></li>
+	  						<li id="Resume"><a href="#" onclick="showResume()">R&eacute;sum&eacute;</a></li>
+	  						<li id="Projects"><a href="#" onclick="showProjects()">Projects</a></li>
 	  					</ul>
 	  				</div>
 	  			</div>
