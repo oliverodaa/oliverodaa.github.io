@@ -1,0 +1,33 @@
+body {
+	font-family:'Lato',helvetica,sans-serif;
+}
+
+.berkeley-logo img {
+	padding:10px;
+	height:88px;
+}
+
+
+/*credit to user magi182 on stackoverflow*/
+.videowrapper {
+    float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.videowrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-img {
+	max-width:none !important;
+	max-height:900px;
+	min-height:500px;
+}
