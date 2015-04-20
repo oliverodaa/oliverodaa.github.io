@@ -1,5 +1,6 @@
 body {
 	font-family:'Lato',helvetica,sans-serif;
+    background-color:color:rgba(000,050,098,0.8);;
 }
 
 .accent_text {
@@ -42,5 +43,6 @@ body {
 .footer {
     background-color:rgba(000,050,098,0.8);
     padding:50px;
+    margin-top:50px;
     color:white;
 }
