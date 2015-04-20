@@ -1,0 +1,46 @@
+body {
+	font-family:'Lato',helvetica,sans-serif;
+}
+
+.accent_text {
+    color:rgba(000,050,098,0.8);
+}
+
+.berkeley-logo img {
+	padding:10px;
+	height:88px;
+}
+
+.navbar {
+    background-color:rgba(255,255,255,0.1);
+}
+
+/*credit to user magi182 on stackoverflow*/
+.videowrapper {
+    float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.videowrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-img {
+	max-width:none !important;
+	max-height:900px;
+	min-height:500px;
+}
+
+.footer {
+    background-color:rgba(000,050,098,0.8);
+    padding:50px;
+    color:white;
+}
