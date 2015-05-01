@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>How I Made Connect Four</title>
+	<title>How I Made Minimax Connect Four</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-	<link href="/homepage.css" rel="stylesheet">
+
+	<!-- BOOTSTRAP AND JQUERY -->
+	<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="jquery/jquery-2.1.3.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <!-- FONT AWESOME ICONS -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- LATO FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
+    <!-- STYLESHEET -->
+	<link href="style.css" rel="stylesheet">
+
+	<!-- FAVICON -->
 	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
-	<script src="/googleTracking.js"></script>
-	<script src="/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/homepage.js"></script>
+
+	<!-- ANALYTICS TRACKING FILE -->
+	<script src="../../googleTracking.js"></script>
 </head>
   <body>
-  	<div id="cover_image">
-  		<img src="/static/StinsonBanner.JPG" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  <div>
+    <div id="cover_image_div">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
   	</div>
   	<div id="cover_space">
   		<div id="title_container">
-	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">How I Made Connect Four</h1></a>
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Coding Minimax Connect Four</h1></a>
 	  		<div id="icons">
 		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
 		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
@@ -43,9 +55,7 @@
 	  				</div>
 	  				<div class="collapse navbar-collapse">
 	  					<ul class="nav navbar-nav">
-	  						<li><a href="/">About</a></li>
-	  						<li><a href="/resume">R&eacute;sum&eacute;</a></li>
-	  						<li><a href="/projects">Projects</a></li>
+	  						<li><a href="../">Back to ollie-odonnell.com</a></li>
 	  					</ul>
 	  				</div>
 	  			</div>
@@ -54,7 +64,7 @@
 
 <div class="container-fluid">
 	      <div class="row">
-	        <div class="col-md-4 col-md-offset-4">
+	        <div class="col-md-6 col-md-offset-3">
 				<h1 id="introduction">Introduction</h1>
 
 <p>When I decided to make an AI for Connect Four in my first Computer Science course, I knew it would be a challenge, but a rewarding one. </p>
@@ -73,7 +83,7 @@
   </li>
 </ul>
 
-<p><img src="/static/connectfour.png" width="300px" /></p>
+<p><img src="static/connectfour.png" width="300px" /></p>
 
 <h3 id="complete-files-for-reference">Complete Files for Reference</h3>
 
@@ -87,7 +97,7 @@
 
 <p>During the summer of 2014 I revisited the code because I wanted to implement a proper Minimax AI. While my Snap! implementation manually looked forward two and three moves to check for winning and losing choices, for the first time I was able to build a Minimax AI that would look forward as many moves as you told it to!</p>
 
-<p><a href="/static/connect.py">Here’s the Python file</a></p>
+<p><a href="static/connect.py">Here’s the Python file</a></p>
 
 <h4 id="javascript">JavaScript</h4>
 
@@ -116,7 +126,7 @@
 
 <p>This flow chart will shape the order of the rest of the article, so feel free to open it in another window to follow along.</p>
 
-<p><a href="/static/ChartImg.png"><img src="/static/ChartImg.png" width="100%" /></a></p>
+<p><a href="static/ChartImg.png"><img src="static/ChartImg.png" width="100%" /></a></p>
 
 <h2 id="basic-ideas-and-definitions">Basic Ideas and Definitions</h2>
 
@@ -176,7 +186,7 @@ var testPosition =
 
 <p>The goal of this function is to calculate the value of a single position from the perspective of the person who will move next. For example, in the image below, the value of the position from the perspective of white is “undecided”. </p>
 
-<p><img src="/static/connectfour2.png" width="300px" /></p>
+<p><img src="static/connectfour2.png"></p>
 
 <p>Consider three scenarios:</p>
 
@@ -200,7 +210,7 @@ var testPosition =
 
 <p>While teaching CS10, <a href="http://www.eecs.berkeley.edu/~ddgarcia/">Dan Garcia</a> shared a fantastic representation of the “position value” function.</p>
 
-<p><a href="/static/positionValue.png"><img src="/static/positionValue.png" width="450px" /></a></p>
+<p><a href="static/positionValue.png"><img src="static/positionValue.png"></a></p>
 
 <p>As you can see, the function is recursive! </p>
 
@@ -224,21 +234,10 @@ var testPosition =
 <p>In this particular case, our function would return “win”, because at least one of the child values was a loss for our opponent.</p>
 
 
-	        </div>
-	        <div class="col-md-4 ">
-	        	<div class="sidebar_box">
-	<a href="/"><h2>Blog</h2></a>
-	  
-	    <a href="/Coding-Knightour.html">Coding the Knight's Tour</a><br>
-	  
-	    <a href="/Connect-Four-Tutorial.html">How I Made Connect Four</a><br>
-	  
+	    </div>
+   </div>
 </div>
-			</div>
-	      </div>
 </div>
-
-	</div>
-	<div id="footer_space"><p>Hi. Have you tried beating my <a href="/connectfour/">Connect Four Minimax AI</a> yet?</p></div>
+<div id="footer_space"><p>Hi. Have you tried beating my <a href="../../connectfour/">Connect Four Minimax AI</a> yet?</p></div>
 </body>
 </html>
