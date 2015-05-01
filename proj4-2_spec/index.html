@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proj4-4 Spec</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<!-- BOOTSTRAP AND JQUERY -->
+	<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="bootstrap-3.3.4-dist/jquery/jquery.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <!-- FONT AWESOME ICONS -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- LATO FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
+    <!-- STYLESHEET -->
+	<link href="style.css" rel="stylesheet">
+
+	<!-- FAVICON -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+
+	<!-- ANALYTICS TRACKING FILE -->
+	<script src="../../googleTracking.js"></script>
+</head>
+  <body>
+  <div>
+    <div id="cover_image_div">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Proj4-4 Spec</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="/">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="../">Back to ollie-odonnell.com</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<!-- Specifically Connect Four Head -->
+<link rel="stylesheet" href="style.css">
+<script src=myscript.js></script>
+<!-- end -->
+
+<div class="container-fluid">
+  <div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div id="start">
+			<h3>Step 0: Set up the actual code you'll run on Amazon EC2</h3>
+			<p>Go into your proj4-XX-XX folder on a hive computer (it's okay if you're ssh'd in).</p>
+			<p>Create a branch called "part2".</p>
+			<pre>git checkout -b part2</pre>
+			<p>Pull proj4 starter files onto that branch.</p>
+			<pre>git pull proj4_starter part2</pre>
+			<p>Push the branch to Github, so you can later pull "part2" into your EC2 instance.</p>
+			<pre>git push origin part2</pre>
+
+			<h3>Step 0.5: Create folder and create an account with Amazon EC2</h3>
+			<p>I like to think of the folder we're creating now as sort of a "base camp" from which to log into Amazon EC2.</p>
+			<pre>git clone git@github.com:cs61c-spring2015/proj4_ec2.git
+cd proj4_ec2 # Go inside the directory that was created</pre>
+			<p>Donggyu has set up a cool script to automatically generate logins for us! These logins (when they work) seem to magically work with the <code>make</code> commands to let us do stuff on EC2 from the Hive.</p>
+			<pre>make account</pre>
+			<p>The problem is that the account generation is, in Donggyu's own words, a little hacky. We're told to just call <code>make clean</code> then <code>make account</code> over and over until it doesn't error. But that's what scripts were made for! Use this neat shell script Alex Fu wrote.</p>
+			<pre>#!/bin/bash
+ 
+i="1"
+ 
+while [ $i -ne 0 ] ; do
+        make clean
+        make account | tee testing.txt
+        i=`grep "403 InvalidClientTokenId" testing.txt | wc -l`
+        # cat $testing
+done</pre>
+			<p>Just copy and paste it into the terminal, and it'll stop when you have a working account.</p>
+
+			<h3>Step 1: Run a test to make sure that your code isn't going to take forever and make Donggyu bankrupt</h3>
+			<p>Start renting a cluster on EC2.</p>
+			<pre>make launch-test</pre>
+			<p>If this screws up at any point, just call: <pre>make resume </pre> until it works. </p>
+			<p>Now you've started renting your much smaller cluster for the sake of testing that it all works fine. </p>
+			<p><strong>Note:</strong> Watch the time, because every minute you're renting it costs money.</p>
+			<p>Now you're ready to log in (basically ssh-ing in) to the cluster you rented.<p>
+			<pre>make login</pre>
+			<p>Now copy your code into the cluster so you can actually run it.</p>
+<pre>git clone https://github.com/cs61c-spring2015/proj4-XX-YY.git 
+cd proj4-XX-YY
+git checkout part2</pre>
+			<p>Now we need to get Cython and other dependencies onto our cluster machine. Run Donggyu's shell script to do this automatically.</p>
+			<pre>./setup_ec2.sh</pre>
+			<p>Finally, we can run some test code.</p>
+			<pre>make ec2-cnn-test</pre>
+			<p>Look at how long this takes - if it's too slow then you may need to change something before you actually run your code on the massive data sets.</p>
+			<p>Now that you are done, you need to kill your cluster and end the rental.</p>
+			<pre>make destroy</pre>
+
+			<h3>Step 2: Run the 3 benchmarks with "launch-small"</h3>
+			<p>This is just the same as step 1, except that:
+				<ul>
+					<li>Instead of renting a small test cluster, you are now running your code on 5 instances of c3.x8large.</li>
+					<li>Instead of just running <code>make ec2-cnn-test</code>, you're running 3 much larger benchmarks and recording the results.</li>
+				</ul>
+			</p>
+			<p>As in step 1, we need to start renting our cluster from Amazon:</p>
+			<pre>make launch-small</pre>
+			<p>If this screws up at any point, just call: <pre>make resume </pre> until it works.</p>
+			<p>Now we go into our cluster to run the benchmarks.</p>
+			<pre>make login</pre>
+			<p>Now copy your code into the cluster so you can actually run it.</p>
+<pre>git clone https://github.com/cs61c-spring2015/proj4-XX-YY.git 
+cd proj4-XX-YY
+git checkout part2</pre>
+			<p>Now we need to get Cython and other dependencies onto our cluster machine. Run Donggyu's shell script to do this automatically.</p>
+			<pre>./setup_ec2.sh</pre>
+			<p>Now we run tests on 3 benchmarks:
+				<ul>
+					<li>ec2-cnn-large</li>
+					<li>ec2-cnn-huge</li>
+					<li>ec2-cnn-full</li>
+				</ul>
+			If you would like, you can call <code>make ec2-cnn-large</code>, <code>make ec2-cnn-huge</code>, and <code>make ec2-cnn-full</code> - or you can just call another shell script Donggyu wrote for us:</p>
+<pre>screen
+./batch.sh</pre>
+			<p>Note that Donggyu's command will save all output to a log file on your cluster (so be very careful about destroying your session on the cluster until you've got the information you need out of that log).</p>
+			<p>Either way, you will get benchmark results for each that look something like this:</p>
+			<pre>cnn train-large 8000 2> ec2.log
+
+[CS61C Project 4] start classifier training
+iteration: 0, loss: X, time: X sec
+iteration: 1, loss: X, time: X sec
+iteration: 2, loss: X, time: X sec
+[CS61C Project 4] done training
+[CS61C Project 4] test the classifier
+[CS61C Project 4] accuracy: X
+[CS61C Project 4] training performane: X imgs / sec
+[CS61C Project 4] time elapsed: X min
+</pre>
+			<p>Record them in some way, because you'll need them to write your answers in part2.txt.</p>
+			<p>Once you have your precious benchmark results, you should kill your session on the cluster (remember that every minute renting the cluster is costing the school money).</p>
+			<pre>make destroy</pre>
+
+			<h3>Step 3: Run the 3 benchmarks with "launch-big"</h3>
+			<p>This is almost exactly the same as step 2, except that:
+				<ul>
+					<li>Instead of running your code on 5 instances of c3.x8large, you now have 10 instances.</li>
+				</ul>
+			</p>
+			<p>As with every other step, we need to start renting our cluster from Amazon:</p>
+			<pre>make launch-small</pre>
+			<p>Call <code>make resume</code> as needed.</p>
+			<p>From here, you know the drill:</p>
+			<pre>make login
+git clone https://github.com/cs61c-spring2015/proj4-XX-YY.git 
+cd proj4-XX-YY
+git checkout part2
+./setup_ec2.sh
+screen
+./batch.sh</pre>
+			<p>Record your results for:
+				<ul>
+					<li>ec2-cnn-large</li>
+					<li>ec2-cnn-huge</li>
+					<li>ec2-cnn-full</li>
+				</ul>
+			</p>
+			<p>Kill the session.</p>
+			<pre>make destroy</pre>
+			<h3>Step 4: Submit</h3>
+			<p>I'm going to link you back to the spec for this last step: <a href="http://inst.eecs.berkeley.edu/~cs61c/sp15/projs/04/index2.html">link</a>. I hope this less confusing spec has helped you!</p>
+		</div>
+	</div>
+  </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi. Have you tried beating my <a href="http://ollie-odonnell.com/ConnectFour/">Connect Four Minimax AI</a> yet? </p>
+	</div>
+</body>
+</html>
