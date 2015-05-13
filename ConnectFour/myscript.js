@@ -20,9 +20,8 @@ var CONSTANT_WIN = 10000000000000000000000;
 var CONSTANT_LOSE = -10000000000000000000000;
 var CONSTANT_DRAW = 0;
 var CONSTANT_UNDECIDED = "undecided";
-// Objects for Memoization
-var primitiveValuesObject = {};
-var connectionScoresObject = {};
+// How many positions checked?
+var positionsChecked = 0;
 
 function startConnectFour() {
 	// Called by "start new game" button
@@ -138,7 +137,7 @@ function changeMessageBar(text) {
 }
 
 function showCalculations() {
-	changeMessageBar("The AI has checked " + Object.size(connectionScoresObject) + " positions")
+	changeMessageBar("The AI has checked " + positionsChecked + " positions")
 }
 
 Object.size = function(obj) {
@@ -201,29 +200,18 @@ function updateGlobalPosition(column) {
 
 function primitiveValue(position,realValue) {
 	// realValue means that moves that lead to a win can return WIN
-	var stringPosition = positionToString(position);
-	if (stringPosition in primitiveValuesObject && realValue) {
-		// console.log("get here?");
-		var value = primitiveValuesObject[stringPosition];
-		if (value!=CONSTANT_UNDECIDED) {
-			return value;
-		}
+	positionsChecked += 1;
+	if (fourInARow(position)) {
+		// console.log("win?");
+		return CONSTANT_LOSE;
+	}
+	else if (draw(position)) {
+		// console.log("draw?");
+		return CONSTANT_DRAW;
 	}
 	else {
-		if (fourInARow(position)) {
-			// console.log("win?");
-			primitiveValuesObject[stringPosition] = CONSTANT_LOSE;
-			return primitiveValuesObject[stringPosition];
-		}
-		else if (draw(position)) {
-			// console.log("draw?");
-			primitiveValuesObject[stringPosition] = CONSTANT_DRAW;
-			return primitiveValuesObject[stringPosition];
-		}
+		return heuristicValue(position);
 	}
-	connectionScoresObject[stringPosition] = heuristicValue(position);
-	// console.log("connection score? " + heuristicValue(position));
-	return connectionScoresObject[stringPosition];
 }
 
 function findCurrentToken(position) {
@@ -492,7 +480,6 @@ function positionValue(position,depth,move,cutoff) {
 		for (var i = 0; i < validMoves.length; i++) {
 			moveVal = positionValue(position, depth - 1, validMoves[i], minOppVal);
 			if (moveVal == CONSTANT_LOSE) {
-				primitiveValuesObject[stringPosition] = CONSTANT_WIN;
 				undoMove(position, prevMove);
 				return CONSTANT_WIN;
 			}
