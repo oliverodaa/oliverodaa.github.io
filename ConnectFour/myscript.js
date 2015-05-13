@@ -16,9 +16,9 @@ var globalGameWon = false
 var ai_difficulty = 5;
 var ai_token = global_alt_token;
 // Primitive Values
-var CONSTANT_WIN = "win";
-var CONSTANT_LOSE = "lose";
-var CONSTANT_DRAW = "draw";
+var CONSTANT_WIN = 10000000000000000000000;
+var CONSTANT_LOSE = -10000000000000000000000;
+var CONSTANT_DRAW = 0;
 var CONSTANT_UNDECIDED = "undecided";
 // Objects for Memoization
 var primitiveValuesObject = {};
@@ -70,13 +70,13 @@ function applyMove(column) {
 	if (primValue == CONSTANT_LOSE) {
 		boardWin();
 	}
-	else if (primValue == CONSTANT_DRAW) {
+	else if (draw(globalPosition)) {
 		boardDraw();
 	}
 	else {
 		if (global_current_token == ai_token) {
 			changeMessageBar("Awaiting AI Move");
-			setTimeout(function() {applyMove(AI_Move(globalPosition,ai_difficulty));},50);
+			setTimeout(function() {applyMove(AI_Move(clone(globalPosition),ai_difficulty));},50);
 		}
 	}
 }
@@ -187,6 +187,7 @@ function updateBoard(board) {
 	// It also assumes that all other moves have already been visualised.
 	var col = board[board.length-1];
 	var row = board[col].length-1;
+	// console.log(board);
 	var token = board[col][row];
 	document.getElementById(col.toString()+","+row.toString()).className = token;
 }
@@ -202,31 +203,27 @@ function primitiveValue(position,realValue) {
 	// realValue means that moves that lead to a win can return WIN
 	var stringPosition = positionToString(position);
 	if (stringPosition in primitiveValuesObject && realValue) {
+		// console.log("get here?");
 		var value = primitiveValuesObject[stringPosition];
 		if (value!=CONSTANT_UNDECIDED) {
 			return value;
 		}
-		else {
-			return connectionScoresObject[stringPosition];
-		}
 	}
 	else {
 		if (fourInARow(position)) {
+			// console.log("win?");
 			primitiveValuesObject[stringPosition] = CONSTANT_LOSE;
 			return primitiveValuesObject[stringPosition];
 		}
 		else if (draw(position)) {
+			// console.log("draw?");
 			primitiveValuesObject[stringPosition] = CONSTANT_DRAW;
 			return primitiveValuesObject[stringPosition];
 		}
-		else {
-			if (!realValue) {
-				primitiveValuesObject[stringPosition] = CONSTANT_UNDECIDED;
-			}
-			connectionScoresObject[stringPosition] = connectionScore(position);
-			return connectionScoresObject[stringPosition];
-		}
 	}
+	connectionScoresObject[stringPosition] = heuristicValue(position);
+	// console.log("connection score? " + heuristicValue(position));
+	return connectionScoresObject[stringPosition];
 }
 
 function findCurrentToken(position) {
@@ -239,7 +236,7 @@ function findCurrentToken(position) {
 			return playerTwoToken;
 		}
 		else {
-      return playerOneToken;
+     		return playerOneToken;
 		}
 	}
 }
@@ -350,6 +347,15 @@ function fourInARow(position) {
 
 //--------------CONNECTION SCORE-------------//
 
+function heuristicValue(position) {
+	var current_token = findCurrentToken(position);
+	var alt_token = findAltToken(position);
+	var coordinateArray = coordinateArrayMaker(position);
+	var scoreForCurrent = connectionScoreApplier(position,current_token,coordinateArray);
+	var scoreForAlt = connectionScoreApplier(position,alt_token,coordinateArray);
+	return scoreForCurrent - scoreForAlt;
+}
+
 function connectionScore(position) {
 	var current_token = findCurrentToken(position);
 	var alt_token = findAltToken(position);
@@ -364,6 +370,12 @@ function connectionScoreApplier(position,player_token,coordinateArray) {
 	return allCoordinateScores.reduce(function(x,y) {return x+y;});
 }
 
+// From a particular empty cell, how many "potential 4s" are there?
+// We don't want to double count because that cell could just be blocked
+// vert, horiz, etc. return
+// [a,b] where
+// a = number of adjacent tokens (same token)
+// b = number of empty spaces
 function bestConnection(position,startCoordinates,player_token) {
 	var axisArray = [
 		vert(position,startCoordinates,player_token),
@@ -378,9 +390,11 @@ function bestConnection(position,startCoordinates,player_token) {
 		if (axis[0] >= 3) {
 			return 2;
 		}
+		// e.g OX_X_
 		else if (axis[0] == 2 && axis[1] >= 1) {
 			bestScore = 1;
 		}
+		// e.g. _X__O
 		else if (axis[0] == 1 && axis[1] == 2 && bestScore < 0) {
 			bestScore = 0;
 		}
@@ -415,68 +429,88 @@ function maxColumn(position) {
 
 //-----------------------AI MOVE------------------//
 
-function AI_Move(position,depth) {
-	var validCols = validColumns(position);
-	var childPos = childPositions(position,validCols);
-	var childVals = childValues(childPos,depth);
-	var remainingCols = [];
-	var remainingVals = [];
-	for (i=0;i<validCols.length;i++) {
-		if (childVals[i] == CONSTANT_LOSE) {
-			return validCols[i];
-		}
-		else if (childVals[i] == CONSTANT_WIN) {
-			continue;
-		}
-		else {
-			remainingCols.push(validCols[i]);
-			remainingVals.push(childVals[i]);
-		}
-	}
-	if (remainingCols.length > 0) {
-		console.log(remainingVals)
-		var bestScore = bestConnectionScore(remainingVals);
-		console.log(bestScore)
-		var chosenCol = remainingCols[remainingVals.indexOf(bestScore)];
-		console.log("chosenCol is " + chosenCol)
-		return chosenCol;
-	}
-	else {
-		return validCols[0];
-	}
+function AI_Move(position, depth) {
+	// console.log(positionToString(position));
+	var start = new Date();
+	// -----
+    var validMoves = validColumns(position);
+    var minOppVal = CONSTANT_WIN;
+    var minOppPos = validMoves[0]; // just in case all are bad moves
+    var move;
+    var moveValue;
+    for (var i = 0; i < validMoves.length; i++) {
+    	move = validMoves[i];
+    	// console.log("move" + move);
+    	// console.log(positionToString(position));
+        moveValue = positionValue(position, depth, move, minOppVal);
+        console.log("Move " + move + " is " + moveValue);
+        if (moveValue == CONSTANT_LOSE) {
+            return move;
+        } else if (moveValue < minOppVal) {
+            minOppVal = moveValue;
+            minOppPos = move;
+        }
+    }
+    // -------
+    var end = new Date();
+	console.log(end - start + " milliseconds");
+	// -------
+	console.log("Choose column " + minOppPos);
+    return minOppPos;
 }
 
-function positionValue(position,depth) {
-	var stringPosition = positionToString(position);
+
+function positionValue(position,depth,move,cutoff) {
+	// Record previous move and set up current board
+	// console.log(depth);
+	// console.log(positionToString(position));
+	// console.log("a");
+	position[move].push(findCurrentToken(position));
+	var prevMove = position.pop();
+	position.push(move);
+
+	// Check for wins
 	var primValue = primitiveValue(position,true);
-	if (typeof primValue == "string") {
+	if ((depth <= 0 && fullColumns(position) < 5) || primValue == CONSTANT_WIN || primValue == CONSTANT_LOSE || draw(position)) {
+		undoMove(position, prevMove);
+		// console.log("primvalue of " + move +": " + primValue);
 		return primValue;
 	}
-	else if (fullColumns(position) < 5 && (depth <= 0 || isNaN(depth))) {
-		return clone(primValue).reverse();
-	}
+	// return heuristic value
+	// else if (fullColumns(position) < 5 && (depth <= 0 || isNaN(depth))) {
+	// 	return -primValue;
+	// }
+	// go deeper
 	else {
-		validCols = validColumns(position);
-		childPos = childPositions(position,validCols)
-		childVals = childValues(childPos,depth);
-		if (childVals.indexOf(CONSTANT_LOSE) > -1) {
-			primitiveValuesObject[stringPosition] = CONSTANT_WIN;
-			return CONSTANT_WIN;
+		// console.log("c");
+		var stringPosition = positionToString(position); // for memoization
+
+		validMoves = validColumns(position);
+		childVals = [];
+		var minOppVal = CONSTANT_WIN;
+
+		for (var i = 0; i < validMoves.length; i++) {
+			moveVal = positionValue(position, depth - 1, validMoves[i], minOppVal);
+			if (moveVal == CONSTANT_LOSE) {
+				primitiveValuesObject[stringPosition] = CONSTANT_WIN;
+				undoMove(position, prevMove);
+				return CONSTANT_WIN;
+			}
+			minOppVal = Math.min(moveVal, minOppVal);
+			// console.log("minOppVal is " + minOppVal);
+		    // Keep track of the worst situation I can make for my opponent.
+            // IDEA 1: My parent is trying to minimize me and my "brothers"
+            // IDEA 2: One of my "brothers" already got (positionValue of 3)
+            // Therefore, if I can be sure of getting (positionValue >= 3) 
+            //            ->  then our parent will ignore me
+			if (-minOppVal >= cutoff) {
+				undoMove(position, prevMove);
+				return -minOppVal;
+			}
 		}
-		else if (childVals.indexOf(CONSTANT_DRAW) > -1) {
-			primitiveValuesObject[stringPosition] = CONSTANT_DRAW;
-			return CONSTANT_DRAW;
-		}
-		else if (containsConnectionScore(childVals)) {
-			// console.log("for position " + stringPosition + " childVals are " + childVals)
-			var bestScore = bestConnectionScore(childVals);
-			// console.log("bestScore at depth " + depth + " for token " + findCurrentToken(position) + " is " + bestScore)
-			return clone(bestScore).reverse();
-		}
-		else {
-			primitiveValuesObject[stringPosition] = CONSTANT_LOSE;
-			return CONSTANT_LOSE;
-		}
+		undoMove(position, prevMove);
+		// console.log("score is " + minOppVal);
+		return -minOppVal;
 	}
 }
 
@@ -512,6 +546,18 @@ function newPosition(position,column) {
 	copiedPosition[column].push(findCurrentToken(position));
 	copiedPosition.push(column);
 	return copiedPosition;
+}
+
+function undoMove(position, prevMove) {
+	// console.log(">>>>>");
+	// console.log(positionToString(position));
+	// console.log("remove " + position[position.length-1] + ", " + position[position[position.length-1]].toString());
+
+	position[position[position.length-1]].pop(); // Remove last thing from most recent column
+	position[position.length-1] = prevMove; // Make position[7] the most recent move
+	
+	// console.log(positionToString(position));
+	// console.log("<<<<<<");
 }
 
 function clone (existingArray) {
