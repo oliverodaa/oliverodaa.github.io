@@ -142,13 +142,15 @@ pre {
 	text-align:center;
 }
 
-.proj-box {
+.proj-box-outer {
 	display:inline-block;
 	vertical-align:top;
 	text-align:left;
-	width:500px;
-	max-width:100%;
-	margin: 15px;
+	padding:10px;
+}
+
+.proj-box {
+	max-width:500px;
 	box-shadow:0px 0px 20px 0px;
 }
 
@@ -173,5 +175,5 @@ pre {
 
 .proj-content img {
 	width:100%;
-	margin:10px 0px;
+	padding:10px 0px;
 }
