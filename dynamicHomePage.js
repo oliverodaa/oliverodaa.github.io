@@ -3,17 +3,39 @@
 // 3. Hide other two divs
 // 4. Show new div
 // 5. Change Title
+$('.about').hide();
+$('.resume').hide();
+$('.projects').hide();
 
 $(document).ready(function() {
-	$('.resume').hide();
-	$('.projects').hide();
-	$('#content_space').height = $('.about').height(); 
+	if (window.location.hash == "#projects") {
+		currentPage = 3;
+		$('.about').hide();
+		$('.resume').hide();
+		$('.projects').show();
+		$('#About').removeClass("active");
+		$('#Resume').removeClass("active");
+		$('#Projects').addClass("active");
+	} else if (window.location.hash == "#resume") {
+		currentPage = 2;
+		$('.about').hide();
+		$('.projects').hide();
+		$('.resume').show();
+		$('#About').removeClass("active");
+		$('#Projects').removeClass("active");
+		$('#Resume').addClass("active");
+	} else {
+		currentPage = 1;
+		$('.resume').hide();
+		$('.projects').hide();
+		$('.about').show();
+		$('#Resume').removeClass("active");
+		$('#Projects').removeClass("active");
+		$('#About').addClass("active");
+	}
 })
-var currentPage = 1;
 
 function showAbout() {
-	$('#content_space').height = $('.resume').height(); 
-
 	if (currentPage > 1) {
 		var hideDir = 'right';
 		var showDir = 'left';
@@ -52,8 +74,6 @@ function showResume() {
 };
 
 function showProjects() {
-	$('#content_space').height = $('.projects').height(); 
-
 	if (currentPage > 3) {
 		var hideDir = 'right';
 		var showDir = 'left';
