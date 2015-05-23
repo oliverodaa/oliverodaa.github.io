@@ -66,6 +66,7 @@ body {
 }
 
 .sponsor-box img {
+    display:block;
     max-width:166px;
     width:100%;
     margin-left:auto;
