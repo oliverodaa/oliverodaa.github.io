@@ -115,7 +115,7 @@ function getPlayerName(token) {
 function createButtonRow(length) {
 	var buttonRow = ["<tr class='buttonRow'>"];
 	for (var col=1;col<=length;col++) {
-		buttonRow.push("<td><button class='btn btn-default' onclick='setTimeout(function() {receiveMove("+col+")},0);'>" + 
+		buttonRow.push("<td><button class='btn btn-default' onclick='setTimeout(function() {receiveMove("+col+")},0);'>" +
 						col.toString() + "</button></td>");
 	}
 	buttonRow.push("</tr>");
@@ -157,7 +157,7 @@ function resetNumberedBoard(rows,columns) {
 	for (var row=rows-1; row>=0 ;row--) {
 		HTML_Board.push("<tr>");
 		for (var col=0;col<columns;col++) {
-			HTML_Board.push("<td class='empty' id=" + col.toString() + 
+			HTML_Board.push("<td class='empty' id=" + col.toString() +
                       "," + row.toString() + "></td>");
 		}
 		HTML_Board.push("</tr>");
@@ -441,9 +441,9 @@ function AI_Move(position, depth) {
     }
     // -------
     var end = new Date();
-	console.log(end - start + " milliseconds");
-	// -------
-	console.log("Choose column " + minOppPos);
+		console.log(end - start + " milliseconds");
+		// -------
+		console.log("Choose column " + minOppPos);
     return minOppPos;
 }
 
@@ -488,7 +488,7 @@ function positionValue(position,depth,move,cutoff) {
 		    // Keep track of the worst situation I can make for my opponent.
             // IDEA 1: My parent is trying to minimize me and my "brothers"
             // IDEA 2: One of my "brothers" already got (positionValue of 3)
-            // Therefore, if I can be sure of getting (positionValue >= 3) 
+            // Therefore, if I can be sure of getting (positionValue >= 3)
             //            ->  then our parent will ignore me
 			if (-minOppVal >= cutoff) {
 				undoMove(position, prevMove);
@@ -542,7 +542,7 @@ function undoMove(position, prevMove) {
 
 	position[position[position.length-1]].pop(); // Remove last thing from most recent column
 	position[position.length-1] = prevMove; // Make position[7] the most recent move
-	
+
 	// console.log(positionToString(position));
 	// console.log("<<<<<<");
 }
@@ -585,7 +585,7 @@ function bestConnectionScore(childVals) {
 			}
 			else {
 				currentBalance = childVals[i][0] / childVals[i][1];
-			} 
+			}
 			if (currentBalance > bestBalance) {
 				bestBalance = currentBalance;
 				bestScores = childVals[i];
