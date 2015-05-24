@@ -67,10 +67,10 @@ body {
 
 .sponsor-box img {
     display:block;
-    max-width:166px;
+/*    max-width:166px;
     width:100%;
-    padding-left:inherit;
-    padding-right:inherit;
+    margin-left:auto;
+    margin-right:auto;*/
 }
 
 #nav {
