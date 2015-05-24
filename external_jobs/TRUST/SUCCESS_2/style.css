@@ -69,8 +69,8 @@ body {
     display:block;
     max-width:166px;
     width:100%;
-    margin-left:auto;
-    margin-right:auto;
+    padding-left:inherit;
+    padding-right:inherit;
 }
 
 #nav {
