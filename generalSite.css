@@ -125,8 +125,8 @@ pre {
 	color:black;
 }
 
-#twitter-widget-0 { 
-    width: 100% !important; 
+#twitter-widget-0 {
+    width: 100% !important;
 }
 
 #resume_img_and_link {
@@ -177,4 +177,18 @@ pre {
 .proj-content img {
 	width:100%;
 	padding:10px 0px;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
