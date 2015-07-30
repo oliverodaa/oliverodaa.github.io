@@ -26,6 +26,10 @@ pre {
 	width:1920px;
 }
 
+#cover_image_div img {
+	left:-100%;
+}
+
 #cover_image_div_404 {
 	position:fixed;
 	top:0px;
@@ -39,10 +43,6 @@ pre {
 	left:-50%;
 	width:500px;
 	margin:auto;
-}
-
-#cover_image_div img {
-	left:-100%;
 }
 
 #title_container {
