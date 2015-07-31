@@ -1,0 +1,110 @@
+body {
+  background-size:cover;
+  font-family:'Montserrat','helvetica neue';
+  color:#000C6F;
+}
+
+.background-image {
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:-20;
+  width:110%;
+  height:110%;
+  height:110vh;
+  background-image:url(http://www.visitberkeley.com/images/header-rotation/UCBerkeleyFaces%20copy.jpg);
+  background-size:cover;
+  background-position:center;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px)
+}
+
+.top-chunk {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:66vh;
+  z-index:-10;
+  background-color:#000;
+  background-color:rgba(0,15,140,0.4);
+}
+
+.menu {
+  text-align:center;
+  width:100%;
+  margin: 0 auto;
+  padding-top:15px;
+}
+
+.menu li {
+  color:white;
+  display:inline;
+  padding:10%;
+}
+
+.menu li:hover {
+  color:white;
+}
+
+.bottom-chunk {
+  position:absolute;
+  left:0;
+  top:66vh;
+  width:100%;
+  height:34vh;
+  z-index:-10;
+  background-color:#FFF;
+}
+
+.center-hero {
+  position:absolute;
+  left:50%;
+  top:66vh;
+}
+
+.iPhone {
+  position:absolute;
+  left:-400px;
+  bottom:-200px;
+  width:400px;
+}
+
+.iPhone img {
+  width:100%;
+}
+
+.logo {
+  position:absolute;
+  left:0;
+  top:-150px;
+  font-size:100px;
+  color:white;
+}
+
+.tagline {
+  position:absolute;
+  left:5px;
+  top:20px;
+  width:350px;
+  font-size:20px;
+}
+
+.app-store-badge {
+  position:absolute;
+  display:block;
+  bottom:-200px;
+  width:150px;
+  margin:10px;
+}
+
+.apple-store {
+  left:-10px;
+}
+
+.android-store {
+  left:150px;
+}
