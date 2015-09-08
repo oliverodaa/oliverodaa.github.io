@@ -8,13 +8,9 @@ body {
     text-align:center;
 }
 
-.aligned_images img {
-    width:100%;
-}
-
 #cover_image_div {
     position:fixed;
-    top:0px;
+    top:0;
     left:50%;
     z-index:-10;
     width:1920px;
