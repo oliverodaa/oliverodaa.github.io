@@ -8,6 +8,10 @@ body {
     text-align:center;
 }
 
+.aligned_images img {
+    width:100%;
+}
+
 #cover_image_div {
     position:fixed;
     top:0px;
@@ -69,7 +73,7 @@ body {
 
 #content_space img {
     display:block;
-    width:100%;
+    width:66%;
     margin-top:10px;
     margin-bottom:10px;
     margin-left:auto;
