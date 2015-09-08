@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proj1 CS194-26</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<!-- BOOTSTRAP AND JQUERY -->
+	<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="jquery/jquery-2.1.3.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <!-- FONT AWESOME ICONS -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- LATO FONT -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+
+    <!-- STYLESHEET -->
+	<link href="style.css" rel="stylesheet">
+
+	<!-- FAVICON -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+
+</head>
+  <body>
+  <div>
+    <div id="cover_image_div">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Images of the Russian Empire</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="http://www.ollie-odonnell.com">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="http://www.ollie-odonnell.com">Back to ollie-odonnell.com</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<div class="container-fluid">
+  <div class="row">
+	 <div class="col-md-offset-3 col-md-6">
+    <h1>Brief Overview</h1>
+    <p>The project is <a href="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/index.html">"Images of the Russian Empire:
+    Colorizing the Prokudin-Gorskii photo collection"</a>. This has been a very fun project as I have learned about the manipulation of image files (which, with libraries, can be manipulated as arrays of arrays in Python). It is interesting, too, to see the power of the computer in aligning the images.</p>
+    <p>My approach was entirely the one described on the course website. There were points that were open, however. Here were my choices:</p>
+    <ul>
+      <li>The programming language is Python 2.</li>
+      <li>The alignment algorithm is normalized cross-correlation (NCC).</li>
+      <li>The pyramid is generated using <code>skimage.transform.pyramid_gaussian</code>, which outputs a generator. I immediately process the generator into a Python list.</li>
+      <li>I implemented the pyramid version of the code recursively, by breaking up the offset value generation into its own (recursive) function.</li>
+    </ul>
+    <p>I am extremely impressed by the efficiency gains by using the pyramid approach. Here is an image of the notes I wrote to help me conceptualize the effect of an offset of 2 pixels on an image whose width and height has been halved twice.</p>
+    <img src="static/notes-on-pyramid.jpg">
+	 </div>
+  </div>
+  <div class="row">
+   <div class="col-md-offset-3 col-md-6">
+    <h1>Results of my Algorithm</h1>
+    <h2>Example Images</h2>
+    <p>These are the example images for the project as listed <a href="https://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/">here</a>.</p>
+   </div>
+  </div>
+  <div class="aligned_images">
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/bridge.jpg"><img src="static/bridge.jpg"></a>
+        <p>Green: (-8,12)</p>
+        <p>Red: (5,68)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/cathedral.jpg"><img src="static/cathedral.jpg"></a>
+        <p>Green: (2,5)</p>
+        <p>Red: (3,12)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/emir.jpg"><img src="static/emir.jpg"></a>
+        <p>Green: (-470, 608)</p>
+        <p>Red: (-486, 738)</p>
+        <p>This one failed. I believe it's due to the unusual coloration of the emir's clothing. Even on a smaller image with brute-force, NCC would identify the wrong alignment as the 'best' alignment.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/harvesters.jpg"><img src="static/harvesters.jpg"></a>
+        <p>Green: (17,59)</p>
+        <p>Red: (14, 124)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/icon.jpg"><img src="static/icon.jpg"></a>
+        <p>Green: (17,40)</p>
+        <p>Red: (23,89)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/lady.jpg"><img src="static/lady.jpg"></a>
+        <p>Green: (7,52)</p>
+        <p>Red: (12, 116)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/melons.jpg"><img src="static/melons.jpg"></a>
+        <p>Green: (11,82)</p>
+        <p>Red: (14,178)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/monastery.jpg"><img src="static/monastery.jpg"></a>
+        <p>Green: (2,-3)</p>
+        <p>Red: (2,3)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/nativity.jpg"><img src="static/nativity.jpg"></a>
+        <p>Green: (1,3)</p>
+        <p>Red: (0,8)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/onion_church.jpg"><img src="static/onion_church.jpg"></a>
+        <p>Green: (27,51)</p>
+        <p>Red: (37,108)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/self_portrait.jpg"><img src="static/self_portrait.jpg"></a>
+        <p>Green: (29,78)</p>
+        <p>Red: (37,176)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/settlers.jpg"><img src="static/settlers.jpg"></a>
+        <p>Green: (0,7)</p>
+        <p>Red: (-1,15)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/three_generations.jpg"><img src="static/three_generations.jpg"></a>
+        <p>Green: (14,52)</p>
+        <p>Red: (12,111)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/train.jpg"><img src="static/train.jpg"></a>
+        <p>Green: (6,42)</p>
+        <p>Red: (32,87)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/workshop.jpg"><img src="static/workshop.jpg"></a>
+        <p>Green: (0,53)</p>
+        <p>Red: (-12,105)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/turkmen.jpg"><img src="static/turkmen.jpg"></a>
+        <p>Green: (21,55)</p>
+        <p>Red: (28,116)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/village.jpg"><img src="static/village.jpg"></a>
+        <p>Green: (12,65)</p>
+        <p>Red: (22,137)</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/tobolsk.jpg"><img src="static/tobolsk.jpg"></a>
+        <p>Green: (3,3)</p>
+        <p>Red: (3,7)</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+   <div class="col-md-offset-3 col-md-6">
+    <h2>Images from the Prokudin-Gorskii Collection</h2>
+   </div>
+  </div>
+  <div class="row aligned_images">
+    <div class="col-md-4">
+      <a href="static/church-of-savior.jpg"><img src="static/church-of-savior.jpg"></a>
+      <p>Green: (25,18)</p>
+      <p>Red: (31,30)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/river.jpg"><img src="static/river.jpg"></a>
+      <p>Green: (3,17)</p>
+      <p>Red: (19,138)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/st-john-church.jpg"><img src="static/st-john-church.jpg"></a>
+      <p>Green: (19,17)</p>
+      <p>Red: (29,46)</p>
+    </div>
+  </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi. Have you tried beating my <a href="http://www.ollie-odonnell.com/ConnectFour/">Connect Four Minimax AI</a> yet?</p></div>
+</body>
+</html>
