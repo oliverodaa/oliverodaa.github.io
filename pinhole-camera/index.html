@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proj2 CS194-26</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<!-- BOOTSTRAP AND JQUERY -->
+	<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="jquery/jquery-2.1.3.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <!-- FONT AWESOME ICONS -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- LATO FONT -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+
+    <!-- STYLESHEET -->
+	<link href="style.css" rel="stylesheet">
+
+	<!-- FAVICON -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+
+</head>
+  <body>
+  <div>
+    <div id="cover_image_div">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Pinhole Camera!</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="http://www.ollie-odonnell.com">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="http://www.ollie-odonnell.com">Back to ollie-odonnell.com</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<div class="container-fluid">
+  <div class="row">
+	 <div class="col-md-offset-3 col-md-6">
+    <h1>Overview</h1>
+    <p>The project is <a href="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj2-camera/index.html">Building a Pinhole Camera</a>. Our team consists of:
+    <ul>
+      <li>Iskren Illiev</li>
+      <li>Ollie O'Donnell</li>
+      <li>Amy ____</li>
+    </ul>
+    <p>Here is a picture of the camera we set up. As you can see there is a removable section of paper for the different pinhole sizes. The box is taped up to prevent any additional light from coming into the box, apart from through the pinhole. The camera is a Nikon D3100 and in we carefully monitored the focus to ensure that any blurring is a result of the aperture of the pinhole, not a blurring effect from the lens of the camera.</p>
+    <a href="static/camera.jpg"><img src="static/camera.jpg"></a>
+	 </div>
+  </div>
+  <div class="row">
+   <div class="col-md-offset-3 col-md-6">
+    <h1>Results</h1>
+    <h2>Two Scenes, Three Pinhole Sizes</h2>
+    <h3>Larger Versus Smaller Pinholes</h3>
+    <p>As you can see from the images below, the quality of the image changes significantly and consistently with the changing pinhole size.</p>
+    <ul>
+      <li>At 0.1mm diameter, the image receives very little light. Since the pinhole is so small, the light that does come through travels differently according to its wavelenth - an effect called diffraction. Because different colors of light have different wavelengths, we see a line where the image is not discernible. We believe that is a result of shorter wavelengths diffracting more than the longer (red) wavelengths.</li>
+      <li>At 2mm diameter, it appears to be the 'sweet spot'. The image is nicely focused, and there is only a small amount of noise from diffraction. The overall amount of light is enough to work with, allowing a shorter exposure time (depending, of course on the levels of ambient light available, other camera settings, etc.)</li>
+      <li>At 5mm diameter, the images have nice coloration, but they are blurry. This is because the light waves have a broad range of angles to cut through, which is not as much the case with a smaller aperture. Diffraction is not a concern here.</li>
+    </ul>
+   </div>
+  </div>
+  <div class="aligned_images">
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/campanile_.1mm_10s.jpg"><img src="static/campanile_.1mm_10s.jpg"></a>
+        <p>Pinhole Size: 0.1mm</p>
+        <p>Exposure Time: 10 Seconds</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/campanile_2mm_2s.jpg"><img src="static/campanile_2mm_2s.jpg"></a>
+        <p>Pinhole Size: 2mm</p>
+        <p>Exposure Time: 2 Seconds</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/campanile_5mm_.5s.jpg"><img src="static/campanile_5mm_.5s.jpg"></a>
+        <p>Pinhole Size: 5mm</p>
+        <p>Exposure Time: 0.5 Seconds</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="static/bancroft_.1mm_30s.jpg"><img src="static/bancroft_.1mm_30s.jpg"></a>
+        <p>Pinhole Size: 0.1mm</p>
+        <p>Exposure Time: 30 Seconds</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/bancroft_2mm_30s.jpg"><img src="static/bancroft_2mm_30s.jpg"></a>
+        <p>Pinhole Size: 2mm</p>
+        <p>Exposure Time: 30 Seconds</p>
+      </div>
+      <div class="col-md-4">
+        <a href="static/bancroft_5mm_5s.jpg"><img src="static/bancroft_5mm_5s.jpg"></a>
+        <p>Pinhole Size: 5mm</p>
+        <p>Exposure Time: 5 Seconds</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+   <div class="col-md-offset-3 col-md-6">
+    <h2>Four Other Images</h2>
+   </div>
+  </div>
+  <div class="row aligned_images">
+    <div class="col-md-3">
+      <a href="static/car_2mm_20s.jpg"><img src="static/car_2mm_20s.jpg"></a>
+      <p>Pinhole Size: 2mm</p>
+      <p>Exposure Time: 20s</p>
+    </div>
+    <div class="col-md-3">
+      <a href="static/gradunion_2mm_10s.jpg"><img src="static/gradunion_2mm_10s.jpg"></a>
+      <p>Pinhole Size: 2mm</p>
+      <p>Exposure Time: 10s</p>
+    </div>
+    <div class="col-md-3">
+      <a href="static/greek_2mm_15s.jpg"><img src="static/greek_2mm_15s.jpg"></a>
+      <p>Pinhole Size: 2mm</p>
+      <p>Exposure Time: 15s</p>
+    </div>
+    <div class="col-md-3">
+      <a href="static/vlsb_2mm_2s.jpg"><img src="static/vlsb_2mm_2s.jpg"></a>
+      <p>Pinhole Size: 2mm</p>
+      <p>Exposure Time: 2s</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <h2>Bells & Whistles</h2>
+    </div>
+  </div>
+  <div class="col-md-offset-3 col-md-6">
+    <h3>Tracing Paper</h3>
+  </div>
+  <div class="row aligned_images">
+    <div class="col-md-4">
+      <a href="static/tr_paper_2.5s.jpg"><img src="static/tr_paper_2.5s.jpg"></a>
+      <p>Exposure Time: 2.5s</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/tr_paper_10s.jpg"><img src="static/tr_paper_10s.jpg"></a>
+      <p>Exposure Time: 10s</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/tr_paper_20s.jpg"><img src="static/tr_paper_20s.jpg"></a>
+      <p>Exposure Time: 20s</p>
+    </div>
+  </div>
+  <div class="col-md-offset-3 col-md-6">
+    <h3>Light Painting</h3>
+  </div>
+  <div class="row aligned_images">
+    <div class="col-md-4">
+      <a href="static/harvesters.jpg"><img src="static/harvesters.jpg"></a>
+      <p>Green: (17,59)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/icon.jpg"><img src="static/icon.jpg"></a>
+      <p>Green: (17,40)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/lady.jpg"><img src="static/lady.jpg"></a>
+      <p>Green: (7,52)</p>
+    </div>
+  </div>
+  <div class="col-md-offset-3 col-md-6">
+    <h3>3d (Anaglyph) Image</h3>
+  </div>
+  <div class="row aligned_images">
+    <div class="col-md-4">
+      <a href="static/harvesters.jpg"><img src="static/harvesters.jpg"></a>
+      <p>Green: (17,59)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/icon.jpg"><img src="static/icon.jpg"></a>
+      <p>Green: (17,40)</p>
+    </div>
+    <div class="col-md-4">
+      <a href="static/lady.jpg"><img src="static/lady.jpg"></a>
+      <p>Green: (7,52)</p>
+    </div>
+  </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi. Have you tried beating my <a href="http://www.ollie-odonnell.com/ConnectFour/">Connect Four Minimax AI</a> yet?</p></div>
+</body>
+</html>
