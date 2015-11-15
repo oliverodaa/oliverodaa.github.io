@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proj7 CS194-26</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<!-- BOOTSTRAP AND JQUERY -->
+	<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="jquery/jquery-2.1.3.min.js"></script>
+    <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <!-- FONT AWESOME ICONS -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- LATO FONT -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+
+    <!-- STYLESHEET -->
+	<link href="style.css" rel="stylesheet">
+
+	<!-- FAVICON -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/icon">
+
+</head>
+  <body>
+  <div>
+    <div id="cover_image_div">
+  		<img src="static/About.jpg" alt="Well, this is embarrassing. There should be an image here. Great picture, too!">
+  	</div>
+  	<div id="cover_space">
+  		<div id="title_container">
+	  		<a href="http://www.ollie-odonnell.com"><h1 id="title">Panoramas Part 1</h1></a>
+	  		<div id="icons">
+		  		<a href="https://www.linkedin.com/pub/ollie-o-donnell/90/502/a33"><i class="fa fa-linkedin">&nbsp;&nbsp;</i></a>
+		  		<a href="https://github.com/oliverodaa/"><i class="fa fa-github">&nbsp;&nbsp;</i></a>
+		  		<a href="mailto:oliver.o@berkeley.edu?subject=We%20want%20you%20on%20our%20team!"><i class="fa fa-envelope"></i></a>
+	  		</div>
+  		</div>
+  	</div>
+  	 <div id="content_space">
+  	 <div id="nav-wrapper">
+	  		<div id="nav" data-spy="affix" data-offset-top="300" class="navbar navbar-default" role="navigation">
+	  			<div class="container-fluid">
+	  				<div class="navbar-header">
+	  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  						<span class="sr-only">Toggle navigation</span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  						<span class="icon-bar"></span>
+	  					</button>
+	  					<a class="navbar-brand" href="http://www.ollie-odonnell.com">Ollie O'Donnell</a>
+	  				</div>
+	  				<div class="collapse navbar-collapse">
+	  					<ul class="nav navbar-nav">
+	  						<li><a href="http://www.ollie-odonnell.com">Back to ollie-odonnell.com</a></li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+<div class="container-fluid">
+  <div class="row">
+	 <div class="col-md-12">
+<h1>3d-Warping!</h1>
+  <h2>What I Learned</h2>
+    <p>This was not an easy project! I hugely underestimated the difficulty of finding the homography. Initially, I thought that a solution similar to the one I found for project 5 would do the trick - but it created an affine transformation. I learned a great deal about transforming points in 3 dimensions and the importance of matrix operations and order.</p>
+    <p>For example, when you shift from coordinates in image1 to new coordinates to line up with image2, some coordinates will be negative. So there is a requirement to shift vertically and horizontally within the larger canvas to fit everything. Later, when adding pixels to the canvas, you need to be sure to reverse that shift to get to coordinates relative to your base image, then invert the transformation from image1 to image 2 to get back in terms of coordinates relative to image 1. Mind-bending stuff!</p>
+    <a href="static/axb.png"><img src="static/axb.png"></a>
+    <p>Not to mention the Singular Value Decomposition required to solve for H in the first place! This has been an intense weekend.</p>
+    <p>Taking the images was very fun!</p>
+  <h2>Rectified Images</h2>
+    <h3>Image 6: Google</h3>
+      <a href="static/6a.jpg"><img src="static/6a.jpg"></a>
+      <a href="static/6.jpg"><img src="static/6.jpg"></a>
+    <h3>Image 7: Ferris</h3>
+      <a href="static/7a.jpg"><img src="static/7a.jpg"></a>
+      <a href="static/7.jpg"><img src="static/7.jpg"></a>
+  <h2>Panoramas</h2>
+    <h3>Image 1: Apartments</h3>
+        <a href="static/1a.jpg"><img src="static/1a.jpg"></a>
+        <a href="static/1b.jpg"><img src="static/1b.jpg"></a>
+        <a href="static/1.jpg"><img src="static/1.jpg"></a>
+    <h3>Image 2: Hills</h3>
+        <a href="static/2a.jpg"><img src="static/2a.jpg"></a>
+        <a href="static/2b.jpg"><img src="static/2b.jpg"></a>
+        <a href="static/2.jpg"><img src="static/2.jpg"></a>
+    <h3>Image 3: Bay View</h3>
+        <a href="static/3a.jpg"><img src="static/3a.jpg"></a>
+        <a href="static/3b.jpg"><img src="static/3b.jpg"></a>
+        <a href="static/3.jpg"><img src="static/3.jpg"></a>
+    <h3>Image 4: Campanile</h3>
+        <a href="static/4a.jpg"><img src="static/4a.jpg"></a>
+        <a href="static/4b.jpg"><img src="static/4b.jpg"></a>
+        <a href="static/4.jpg"><img src="static/4.jpg"></a>
+    <h3>Image 5: All Hail Ferris</h3>
+        <a href="static/5a.jpg"><img src="static/5a.jpg"></a>
+        <a href="static/5b.jpg"><img src="static/5b.jpg"></a>
+        <a href="static/5.jpg"><img src="static/5.jpg"></a>
+   </div>
+  </div>
+</div>
+
+	</div>
+	<div id="footer_space"><p>Hi. Have you tried beating my <a href="http://www.ollie-odonnell.com/ConnectFour/">Connect Four Minimax AI</a> yet?</p></div>
+</body>
+</html>
