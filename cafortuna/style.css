@@ -1,0 +1,210 @@
+body {
+  background-color: lightgray;
+  background-image: url('static/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 1080px auto;
+  margin: 0;
+}
+
+.title-area {
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-family: "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  font-size: 65px;
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 40px;
+}
+
+h3 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
+}
+
+li {
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+  font-family: 'Raleway', sans-serif;
+}
+
+.content-area {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.white-box {
+  padding: 100px;
+  color: gray;
+  background-color: white;
+}
+
+.white-box h3 {
+  text-align: center;
+}
+
+.divider-line {
+  display: block;
+  margin: auto;
+  width: 30px;
+  height: 2px;
+  background-color: rgb(255, 183, 48);
+}
+
+.top-bar {
+  display: flex;
+}
+
+.gray-title-box {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-color: rgb(106, 163, 160);
+}
+
+.gray-text-box {
+  flex: 1;
+  text-align: center;
+  color: white;
+  background-color: rgb(106, 163, 160);
+}
+
+.gray-text-box-inner {
+  padding: 100px;
+}
+
+.bed-image {
+  flex: 1;
+  height: 250px;
+  background-image: url('static/bed_1a.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image-container {
+  background-color: rgb(106, 163, 160);
+  width: 250px;
+  overflow: hidden;
+}
+
+.details-image1 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/bed_2.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image2 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/Dining_1a.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image3 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/Main_bath_1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image4 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/view_1d.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.location-image {
+  flex: 1;
+  height: 250px;
+  background-image: url('static/map.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.linda-image {
+  width: 250px;
+  background-image: url('static/linda.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-white-box {
+  color: gray;
+  background-color: white;
+  flex: 1;
+  padding: 100px;
+}
+
+.details-white-box-inner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-linda {
+  margin-top: 50px;
+}
+
+.location {
+  margin-top: 50px;
+}
+
+.details {
+  margin-top: 50px;
+}
+
+.footer {
+  height: 100px;
+  margin: 100px 0;
+}
+
+.book-your-stay {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  color: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 183, 48);
+}
+
+
+.book-your-stay:hover {
+  background-color: rgb(205, 133, 28);
+}
