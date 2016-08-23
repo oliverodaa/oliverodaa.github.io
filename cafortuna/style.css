@@ -96,7 +96,7 @@ a {
 .bed-image {
   flex: 1;
   height: 250px;
-  background-image: url('static/bed_1a.jpg');
+  background-image: url('static/view.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -111,7 +111,7 @@ a {
 .details-image1 {
   width: 250px;
   height: 250px;
-  background-image: url('static/bed_2.jpg');
+  background-image: url('static/Dining_1a.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -120,7 +120,7 @@ a {
 .details-image2 {
   width: 250px;
   height: 250px;
-  background-image: url('static/Dining_1a.jpg');
+  background-image: url('static/bed_2.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -138,11 +138,48 @@ a {
 .details-image4 {
   width: 250px;
   height: 250px;
-  background-image: url('static/view_1d.jpg');
+  background-image: url('static/bed_1a.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
+
+.details-image5 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/kitchen_1a.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image6 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/entrance.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image7 {
+  width: 250px;
+  height: 250px;
+  background-image: url('static/ensuite_1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.details-image8 {
+  flex: 1;
+  height: 250px;
+  background-image: url('static/location_1a.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 
 .location-image {
   flex: 1;
